@@ -2,12 +2,12 @@ import GradientText from "@/app/components/gradientText";
 
 export default function WhoWeAre() {
     return (
-        <div className="bg-black px-4 pt-8 text-white">
+        <div className="px-4 py-8 text-white">
             <div className="text-center">
                 <GradientText text="Who we are"/>
                 <p className="mt-4">Welcome to Kyno Labs: Your vision, Our innovation</p>
             </div>
-            <p className="text-secondary-text mt-8">
+            <p className="text-secondary-text my-8">
                 At Kyno Labs, we specialize in AI, ML, DL, and software development. With 3 years of experience and over
                 10 successful projects, we deliver cutting-edge AI solutions and data-driven insights to drive growth
                 and improve efficiency for businesses.
