@@ -13,6 +13,7 @@ export default {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			'primary-blue': '#2B1EDD',
+  			'primary-blue-200': 'rgba(43,30,221,0.3)',
   			'primary-yellow': '#F79D25',
   			'secondary-text': '#FFFFFFA8',
   			card: {

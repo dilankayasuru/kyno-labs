@@ -18,7 +18,7 @@ function MobileNav() {
         <div>
             <div className="z-50 fixed top-6 text-white w-full">
                 <div
-                    className="border border-zinc-500 rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur">
+                    className="rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur bg-black bg-opacity-70 transparent-card">
                     <div className="h-11 w-11 rounded-full overflow-hidden">
                         <img src="/logo.png" alt="logo" className="h-full w-full"/>
                     </div>
