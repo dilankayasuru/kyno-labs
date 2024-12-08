@@ -8,12 +8,19 @@ export default function NeuralNetwork() {
 
     // Keep track of mouse position
     const [mousePosition, setMousePosition] = useState<{ x: number, y: number }>({
-        x: window.innerWidth / 1.5,
-        y: window.innerHeight / 1.5,
+        x: 0,
+        y: 0,
     });
 
     // Add event listener to the document to get current mouse position
     useEffect(() => {
+        setMousePosition({
+            x: window.innerWidth,
+            y: window.innerHeight,
+        })
+        if (window.innerWidth < 600 ) {
+            return;
+        }
         const handleMouseMove = (e: MouseEvent) => {
             setMousePosition({
                 x: e.clientX,
@@ -27,7 +34,7 @@ export default function NeuralNetwork() {
     }, []);
 
     return (
-        <div className="w-full h-dvh absolute top-0 left-0 -z-10 bg-black">
+        <div className="w-full h-dvh absolute top-0 left-0 -z-10">
             <Scene/>
             <div
                 // Added gradient to control the visibility of neural network animation
@@ -41,7 +48,7 @@ export default function NeuralNetwork() {
 
 function Scene() {
     return (
-        <Canvas camera={{position: [0, 0, 10]}} gl={{alpha: false}}>
+        <Canvas id="neural-network-canvas" camera={{position: [0, 0, 10]}} gl={{alpha: false}}>
             <directionalLight position={[5, 5, 5]} intensity={1}/>
             <ambientLight intensity={0.5}/>
             <Renderer/>
@@ -97,6 +104,9 @@ function Renderer() {
 
     // Effect to handle mouse movement
     useEffect(() => {
+        if (window.innerWidth < 600 ) {
+            return;
+        }
         const handleMouseMove = (event: MouseEvent) => {
             const x = (event.clientX / size.width) * 2 - 1;
             const y = -(event.clientY / size.height) * 2 + 1;
@@ -164,8 +174,6 @@ function Renderer() {
 
                 if (particlePositions[i * 3] < -r || particlePositions[i * 3] > r)
                     particleData.velocity.x = -particleData.velocity.x;
-
-                // No need to check for Z axis as it's constrained to 0
             }
 
             if (particleData.numConnections >= maxConnections) continue;
