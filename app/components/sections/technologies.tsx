@@ -2,6 +2,8 @@
 import GradientText from "@/app/components/gradientText";
 import {IconCloud} from "@/components/ui/icon-cloud";
 import {useEffect, useState} from "react";
+import variants from "@/app/components/variants";
+import {motion} from "motion/react";
 
 const slugs = [
     "typescript",
@@ -46,21 +48,34 @@ export default function Technologies() {
 
     return (
         <div className="px-6 py-8 text-white">
-            <div className="">
+            <motion.div
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{once: true, amount: 0.8}}
+                variants={variants}>
                 <GradientText text="Technologies"/>
-            </div>
-            <div className="mt-8">
-                <p className="text-secondary-text">
+            </motion.div>
+            <motion.div
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{once: true, amount: 0.8}}
+                className="mt-8">
+                <motion.p variants={variants} className="text-secondary-text">
                     Our projects leverage cutting-edge technologies, including Machine Learning, NLP, Cloud Computing,
                     and Data Visualization, alongside robust Databases and intuitive Frontend Frameworks, to deliver
                     innovative and scalable solutions.
-                </p>
-            </div>
+                </motion.p>
+            </motion.div>
             {mounted &&
-                <div className="max-w-xs mx-auto my-0">
+                <motion.div
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{once: true, amount: 0.8}}
+                    variants={variants}
+                    className="max-w-xs mx-auto my-0">
                     <IconCloud
                         iconSlugs={slugs}/>
-                </div>
+                </motion.div>
             }
         </div>
     );

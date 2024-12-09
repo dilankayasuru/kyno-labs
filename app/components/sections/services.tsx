@@ -1,15 +1,26 @@
+"use client"
 import GradientText from "@/app/components/gradientText";
 import ServiceItem from "@/app/components/serviceItem";
-
+import { motion } from "motion/react";
+import variants from "@/app/components/variants";
 export default function Services() {
     return (
         <div className="px-6 py-9 text-white">
-            <div>
+            <motion.div
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{once: true, amount: 0.8}}
+                variants={variants}>
                 <GradientText text="Our services"/>
-            </div>
-            <div className="mt-9">
+            </motion.div>
+            <motion.div
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{once: true, amount: 0.8}}
+                variants={variants}
+                className="mt-9">
                 <ServicesList/>
-            </div>
+            </motion.div>
         </div>
     );
 }

@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import "./globals.css";
 import {Poppins} from "next/font/google";
 import Navbar from "@/app/components/navbar";
+import {Suspense} from "react";
 
 const poppins = Poppins({
     weight: ['400', '700'],
@@ -23,10 +24,12 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={poppins.className}
+            className={`${poppins.className} bg-black`}
         >
         <Navbar/>
-        {children}
+        <Suspense fallback={<div className="bg-black text-white">Loading...</div>}>
+            {children}
+        </Suspense>
         </body>
         </html>
     );

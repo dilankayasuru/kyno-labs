@@ -2,6 +2,8 @@
 import ImageSlider from "@/app/components/slider";
 import {FaAngleUp} from "react-icons/fa6";
 import {useState} from "react";
+import variants from "@/app/components/variants";
+import { motion } from "motion/react";
 
 interface ProjectCardProps {
     images: string[],
@@ -13,7 +15,12 @@ export default function ProjectCard(props: ProjectCardProps) {
     const {images, title, description} = props;
     const [expanded, setExpanded] = useState(false);
     return (
-        <div className="overflow-hidden rounded-xl transparent-card max-w-xs relative">
+        <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{once: true, amount: 0.8}}
+            variants={variants}
+            className="overflow-hidden rounded-xl transparent-card max-w-xs relative">
             <ImageSlider images={images}/>
             <div className="p-4 relative bg-[linear-gradient(135deg,_#ffffff21,_#d9d9d900)] bg-black" onClick={() => setExpanded(!expanded)}>
                 <p className="text-lg w-full">
@@ -33,6 +40,6 @@ export default function ProjectCard(props: ProjectCardProps) {
                     {description}
                 </p>
             </div>
-        </div>
+        </motion.div>
     );
 }

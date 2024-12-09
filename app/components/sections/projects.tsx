@@ -1,12 +1,19 @@
+"use client"
 import GradientText from "@/app/components/gradientText";
 import ProjectCard from "@/app/components/projectCard";
+import { motion } from "motion/react";
+import variants from "@/app/components/variants";
 
 export default function Projects() {
     return (
         <div className="px-6 py-9 text-white">
-            <div>
+            <motion.div
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{once: true, amount: 0.8}}
+                variants={variants}>
                 <GradientText text="Our portfolio"/>
-            </div>
+            </motion.div>
             <div className="mt-8 flex flex-col gap-8 justify-center items-center">
                 <ProjectCard
                     title="ICD Code prediction from Diagnosis ZWSP and Clinical Text using NLP"
