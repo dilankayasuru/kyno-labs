@@ -156,3 +156,36 @@ export const testimonials = [
         profilePic: "/avatar.png",
     },
 ]
+
+export const contacts = [
+    {
+        title: "Linkedin",
+        value: "@kyno-labs",
+        icon: "Linkedin",
+    },
+    {
+        title: "Instargram",
+        value: "@kynolabs",
+        icon: "Instargram",
+    },
+    {
+        title: "Facebook",
+        value: "@Kyno Labs",
+        icon: "Facebook",
+    },
+    {
+        title: "Surith",
+        value: "+94 73 333 3333",
+        icon: "Phone",
+    },
+    {
+        title: "Ranuja",
+        value: "+94 79 999 9999",
+        icon: "Phone",
+    },
+    {
+        title: "Email",
+        value: "sample@gmail.com",
+        icon: "Email",
+    },
+]
