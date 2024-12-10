@@ -7,6 +7,7 @@ import Testimonials from "@/sections/testimonials";
 import ContactUs from "@/sections/contactUs";
 import Services from "@/sections/services";
 import Footer from "@/sections/footer";
+import Cube from "@/components/cube";
 
 export default function Home() {
     return (
@@ -15,7 +16,10 @@ export default function Home() {
             <div>
                 <Background/>
                 <WhoWeAre/>
-                <Services/>
+                <div className="relative">
+                    <Cube/>
+                    <Services/>
+                </div>
                 <Projects/>
                 <Technologies/>
                 <Testimonials/>
