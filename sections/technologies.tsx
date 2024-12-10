@@ -26,10 +26,11 @@ export default function Technologies() {
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{once: true, amount: 0.8}}
+                variants={variants}
                 className="mt-8">
-                <motion.p variants={variants} className="text-secondary-text">
+                <p className="text-secondary-text">
                     {technologies.text}
-                </motion.p>
+                </p>
             </motion.div>
             {mounted &&
                 <motion.div
