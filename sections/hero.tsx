@@ -19,7 +19,7 @@ export default function Hero() {
                     </h1>
                     <p className="font-medium text-white">Your Vision, Our Innovation.</p>
                 </div>
-                <p className="text-secondary-text select-none">
+                <p className="text-secondary-text select-none text-center">
                     We specialize in AI, ML, and software solutions that drive business success.
                 </p>
                 <ShimmerButton className="mt-8 appearance-none">

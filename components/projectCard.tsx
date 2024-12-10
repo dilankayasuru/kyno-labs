@@ -29,7 +29,7 @@ export default function ProjectCard(props: ProjectCardProps) {
                 </p>
                 <div
                     onClick={() => setExpanded(!expanded)}
-                    className={`transition-all duration-300 h-7 w-7 grid place-content-center rounded-full z-20 bg-white bg-opacity-25 absolute right-0 m-4 ${expanded ? 'rotate-180 -top-52' : 'rotate-0 top-0'}`}>
+                    className={`transition-all duration-300 h-7 w-7 grid place-content-center rounded-full z-20 bg-white bg-opacity-25 absolute right-0 m-4 ${expanded ? 'rotate-0 -top-52' : 'rotate-180 top-0'}`}>
                     <ArrowUp height={24} width={24} color="black"/>
                 </div>
             </div>

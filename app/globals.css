@@ -3,71 +3,89 @@
 @tailwind utilities;
 
 body {
-  font-family: Poppins, Helvetica, sans-serif;
+    font-family: Poppins, Helvetica, sans-serif;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
 
 .transparent-border {
-  position: relative;
+    position: relative;
 }
 
 .transparent-border:before {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  inset: 0px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-          to bottom right,
-          #dddddd 0%,
-          #333333 33%,
-          #555555 62%,
-          #333333 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  transition: --c1 300ms ease, --c2 300ms ease, --c3 300ms ease;
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    inset: 0px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+            to bottom right,
+            #dddddd 0%,
+            #333333 33%,
+            #555555 62%,
+            #333333 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: --c1 300ms ease, --c2 300ms ease, --c3 300ms ease;
 }
 
 .gradient-title {
-  @apply bg-gradient-to-r pb-1 inline-block text-transparent bg-clip-text from-white to-primary-blue text-4xl font-semibold;
+    @apply bg-gradient-to-r pb-1 inline-block text-transparent bg-clip-text from-white to-primary-blue text-4xl font-semibold;
 }
 
 .gradient-border {
-  position: relative;
+    position: relative;
 }
 
 .gradient-border:before {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-          to bottom right,
-          #dddddd 0%,
-          #333333 33%,
-          #555555 62%,
-          #333333 100%
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  transition: --c1 300ms ease, --c2 300ms ease, --c3 300ms ease;
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+            to bottom right,
+            #dddddd 0%,
+            #333333 33%,
+            #555555 62%,
+            #333333 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    transition: --c1 300ms ease, --c2 300ms ease, --c3 300ms ease;
+}
+
+.testimonial-slider .slick-track {
+    @apply flex justify-between h-full gap-4;
+}
+
+.testimonial-slider .slick-arrow {
+    @apply top-0;
+}
+
+.testimonial-slider .slick-arrow.slick-next {
+    @apply right-0 before:content-[url('/arrow-next.svg')] w-8 h-8;
+}
+.testimonial-slider .slick-arrow.slick-prev {
+    @apply left-auto right-9 before:content-[url('/arrow-prev.svg')] w-8 h-8;
+}
+.testimonial-slider {
+    @apply pt-8;
 }
 
 @layer base {
-  :root {
-    --radius: 0.5rem;
-  }
+    :root {
+        --radius: 0.5rem;
+    }
 }

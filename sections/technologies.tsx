@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import {motion} from "motion/react";
 import variants from "@/components/animation/variants";
-import {technologies} from "@/components/assets";
+import {technologies} from "@/public/assets";
 import {IconCloud} from "@/components/ui/techStackCloud";
 
 export default function Technologies() {
@@ -26,10 +26,11 @@ export default function Technologies() {
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{once: true, amount: 0.8}}
+                variants={variants}
                 className="mt-8">
-                <motion.p variants={variants} className="text-secondary-text">
+                <p className="text-secondary-text">
                     {technologies.text}
-                </motion.p>
+                </p>
             </motion.div>
             {mounted &&
                 <motion.div

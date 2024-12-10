@@ -16,7 +16,6 @@ export default function Background() {
 
     return (
         <motion.div
-            style={{backgroundColor: "black"}}
             animate={{
                 backgroundImage: gradients
             }}
@@ -26,7 +25,7 @@ export default function Background() {
                 repeat: Infinity,
                 repeatType: "loop",
             }}
-            className="h-dvh w-full fixed -z-20 bg-opacity-0 top-0 left-0"
+            className="h-dvh w-full fixed -z-20 bg-opacity-0 top-0 left-0 backdrop-blur"
         />
     );
 }

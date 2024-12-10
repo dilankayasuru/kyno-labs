@@ -3,6 +3,11 @@ import WhoWeAre from "@/sections/whoWeAre";
 import Background from "@/components/background";
 import Projects from "@/sections/projects";
 import Technologies from "@/sections/technologies";
+import Testimonials from "@/sections/testimonials";
+import ContactUs from "@/sections/contactUs";
+import Services from "@/sections/services";
+import Footer from "@/sections/footer";
+import Cube from "@/components/cube";
 
 export default function Home() {
     return (
@@ -11,8 +16,15 @@ export default function Home() {
             <div>
                 <Background/>
                 <WhoWeAre/>
+                <div className="relative">
+                    <Cube/>
+                    <Services/>
+                </div>
                 <Projects/>
                 <Technologies/>
+                <Testimonials/>
+                <ContactUs/>
+                <Footer/>
             </div>
         </div>
     );
