@@ -1,7 +1,9 @@
 "use client"
-import {IoClose, IoMenu} from "react-icons/io5";
 import {useState} from "react";
 import Link from "next/link";
+import Image from "next/image";
+import MenuClose from "./icons/menuClose";
+import MenuOpen from "./icons/menuOpen";
 import {motion, useMotionValueEvent, useScroll} from "motion/react";
 
 export default function Navbar() {
@@ -32,14 +34,14 @@ function MobileNav() {
                 transition={{duration: 0.3, ease: "easeInOut"}}
                 className="z-50 fixed top-6 text-white w-full">
                 <div
-                    className="rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur bg-black bg-opacity-70 transparent-card">
+                    className="rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur bg-black bg-opacity-70 transparent-border">
                     <div className="h-11 w-11 rounded-full overflow-hidden">
-                        <img src="/logo.png" alt="logo" className="h-full w-full"/>
+                        <Image src="/logo.png" alt="logo" width={44} height={44} className="h-full w-full"/>
                     </div>
                     <div className="px-2" onClick={() => setMenuOpened(!menuOpened)}>
                         {menuOpened ?
-                            <IoClose className="text-white h-8 w-8"/> :
-                            <IoMenu className="text-white h-8 w-8"/>
+                            <MenuClose width={32} height={32} color="white"/> :
+                            <MenuOpen width={32} height={32} color="white"/>
                         }
                     </div>
                 </div>

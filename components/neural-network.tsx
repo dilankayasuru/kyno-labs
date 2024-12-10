@@ -64,7 +64,7 @@ function Renderer() {
     const linesRef = useRef<BufferGeometry>(null);
 
     // Constants
-    const maxParticleCount = 1000;
+    const maxParticleCount = 800;
     const particleCount = 650;
     const r = 17;
     const maxConnections = 10;

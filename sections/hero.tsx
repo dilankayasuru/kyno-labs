@@ -1,13 +1,13 @@
 "use client"
-import NeuralNetwork from "@/app/components/neuralNetwork";
-import ShimmerButton from "@/components/ui/shimmer-button";
+import NeuralNetwork from "@/components/neural-network";
+import ShimmerButton from "@/components/ui/shimmerButton";
 import { useInView } from "motion/react";
-import {useRef} from "react";
+import {RefObject, useRef} from "react";
 
 export default function Hero() {
 
-    const ref = useRef(null);
-    const isInView = useInView(ref, {once: true});
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref as RefObject<Element>, {once: true});
 
     return (
         <div ref={ref} className="relative h-dvh p-4 grid place-content-center">
@@ -22,8 +22,8 @@ export default function Hero() {
                 <p className="text-secondary-text select-none">
                     We specialize in AI, ML, and software solutions that drive business success.
                 </p>
-                <ShimmerButton className="mt-8">
-                    <span>Get a free consultation</span>
+                <ShimmerButton className="mt-8 appearance-none">
+                    <span className="text-white">Get a free consultation</span>
                 </ShimmerButton>
             </div>
         </div>

@@ -1,7 +1,6 @@
 "use client";
 
 import {useEffect, useMemo, useState} from "react";
-
 import {
     Cloud,
     fetchSimpleIcons,
@@ -65,10 +64,16 @@ type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
 
 export function IconCloud({iconSlugs}: DynamicCloudProps) {
     const [data, setData] = useState<IconData | null>(null);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
         fetchSimpleIcons({slugs: iconSlugs}).then(setData);
-    }, [iconSlugs]);
+    }, [iconSlugs, mounted]);
 
     const renderedIcons = useMemo(() => {
         if (!data) return null;
@@ -79,6 +84,8 @@ export function IconCloud({iconSlugs}: DynamicCloudProps) {
     }, [data]);
 
     return (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         <Cloud {...cloudProps}>
             <>{renderedIcons}</>
         </Cloud>

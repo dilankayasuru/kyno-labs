@@ -2,6 +2,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
 
 export default function ImageSlider(props: { images: string[] }) {
 
@@ -32,7 +33,10 @@ export default function ImageSlider(props: { images: string[] }) {
                 </Slider>
             }
             {images.length === 1 &&
-                <img src={images[0]} alt="" className="aspect-auto w-full object-contain"/>
+                <Image
+                    src={images[0]} alt="project image" width={512} height={512}
+                    style={{width: "auto", height: "auto"}}
+                    className="aspect-auto w-full object-contain"/>
             }
         </div>
 

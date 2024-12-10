@@ -2,7 +2,7 @@
 
 import {motion} from "framer-motion";
 
-export default function AnimatedGradientBackground() {
+export default function Background() {
 
     const gradients = [
         'radial-gradient(circle at 0% 0%, rgba(40,30,221, 0.20), rgb(0,0,0))',
