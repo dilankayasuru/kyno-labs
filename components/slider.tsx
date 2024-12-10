@@ -27,14 +27,24 @@ export default function ImageSlider(props: { images: string[] }) {
                 <Slider {...settings}>
                     {
                         images.map((image, id) => (
-                            <img key={id} src={image} alt="" className="aspect-auto w-full object-contain"/>
+                            <Image
+                                key={id}
+                                src={image}
+                                alt={`project image ${id}`}
+                                width={512}
+                                height={512}
+                                style={{width: "auto", height: "auto"}}
+                                className="aspect-auto w-full object-contain"/>
                         ))
                     }
                 </Slider>
             }
             {images.length === 1 &&
                 <Image
-                    src={images[0]} alt="project image" width={512} height={512}
+                    src={images[0]}
+                    alt="project image"
+                    width={512}
+                    height={512}
                     style={{width: "auto", height: "auto"}}
                     className="aspect-auto w-full object-contain"/>
             }
