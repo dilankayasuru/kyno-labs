@@ -6,6 +6,7 @@ import Technologies from "@/sections/technologies";
 import Testimonials from "@/sections/testimonials";
 import ContactUs from "@/sections/contactUs";
 import Services from "@/sections/services";
+import Footer from "@/sections/footer";
 
 export default function Home() {
     return (
@@ -19,6 +20,7 @@ export default function Home() {
                 <Technologies/>
                 <Testimonials/>
                 <ContactUs/>
+                <Footer/>
             </div>
         </div>
     );
