@@ -3,6 +3,7 @@ import WhoWeAre from "@/sections/whoWeAre";
 import Background from "@/components/background";
 import Projects from "@/sections/projects";
 import Technologies from "@/sections/technologies";
+import Testimonials from "@/sections/testimonials";
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
                 <WhoWeAre/>
                 <Projects/>
                 <Technologies/>
+                <Testimonials/>
             </div>
         </div>
     );

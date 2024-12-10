@@ -71,3 +71,38 @@ export const technologies = {
         "figma",
     ]
 }
+
+export const testimonials = [
+    {
+        name: "Kevin Payap",
+        country: "South Korea",
+        countryCode: "KR",
+        starts: 4,
+        description: "Awesome job! Exceeded my expectations for this and was able to complete the work exceptionally quick.",
+        profilePic: "/avatar.png",
+    },
+    {
+        name: "Shagun Mishra",
+        country: "India",
+        countryCode: "IN",
+        starts: 5,
+        description: "Working with Ranuja on app development was an inspiring experience. His kindness and great professionalism stood out throughout the project. Ranuja's dedication and expertise brought our vision to life seamlessly, making the process enjoyable and educational. His approachability and willingness to go the extra mile truly set him apart. Thank you, Ranuja, for your outstanding work and exceptional attitude.",
+        profilePic: "/avatar.png",
+    },
+    {
+        name: "Kevin Payap",
+        country: "South Korea",
+        countryCode: "KR",
+        starts: 3,
+        description: "Awesome job! Exceeded my expectations for this and was able to complete the work exceptionally quick.",
+        profilePic: "/avatar.png",
+    },
+    {
+        name: "Shagun Mishra",
+        country: "India",
+        countryCode: "IN",
+        starts: 4,
+        description: "Working with Ranuja on app development was an inspiring experience. His kindness and great professionalism stood out throughout the project. Ranuja's dedication and expertise brought our vision to life seamlessly, making the process enjoyable and educational. His approachability and willingness to go the extra mile truly set him apart. Thank you, Ranuja, for your outstanding work and exceptional attitude.",
+        profilePic: "/avatar.png",
+    },
+]

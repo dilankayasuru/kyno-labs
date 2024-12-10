@@ -2,7 +2,7 @@
 import {motion} from "motion/react";
 import variants from "@/components/animation/variants";
 import ProjectCard from "@/components/projectCard";
-import {projects} from "@/components/assets";
+import {projects} from "@/public/assets";
 
 export default function Projects() {
     return (

@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import {motion} from "motion/react";
 import variants from "@/components/animation/variants";
-import {technologies} from "@/components/assets";
+import {technologies} from "@/public/assets";
 import {IconCloud} from "@/components/ui/techStackCloud";
 
 export default function Technologies() {
