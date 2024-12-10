@@ -1,3 +1,53 @@
+export const services = [
+    {
+        title: "Artificial intelligence",
+        description:
+            [
+                'Machine Learning and Deep Learning',
+                'Time Series Forecasting',
+                'Computer Vision',
+                'Natural Language Processing',
+                'Generative AI and RAGs',
+                'Predictive Modelling',
+            ]
+    },
+    {
+        title: "Data and analytics",
+        description: [
+            'Data Analytics',
+            'Sentiment Analysis',
+            'Predictive Analytics',
+            'Data Visualization',
+            'Dashboard Building',
+            'Database Optimization',
+            'Business Intelligence',
+        ]
+    },
+    {
+        title: "Web and mobile app development",
+        description: [
+            'Full Stack Web Development',
+            'Mobile App Development (Flutter)',
+            'Custom Authentication and Authorization',
+        ]
+    },
+    {
+        title: "Cloud and serverless solutions",
+        description: [
+            'Cloud Computing (AWS / Azure)',
+            'Web Hosting',
+            'Serverless Framework (Python / JS / TS)',
+        ]
+    },
+    {
+        title: "ERP and business solutions",
+        description: [
+            'ERP Systems with AI and Analytics',
+            'ERP / SAP System Development',
+        ]
+    }
+]
+
 export const projects = [
     {
         "title": "ICD Code prediction from Diagnosis ZWSP and Clinical Text using NLP",
