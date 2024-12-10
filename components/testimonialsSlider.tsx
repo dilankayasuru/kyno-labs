@@ -3,7 +3,6 @@ import Star from "@/components/icons/start";
 import Image from "next/image";
 import {testimonials} from "@/public/assets";
 import Slider from "react-slick";
-import {useEffect, useState} from "react";
 
 export default function TestimonialsSlider() {
 
