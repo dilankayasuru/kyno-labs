@@ -1,10 +1,15 @@
 "use client"
+import dynamic from "next/dynamic";
 import {useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MenuClose from "./icons/menuClose";
 import MenuOpen from "./icons/menuOpen";
-import {motion, useMotionValueEvent, useScroll} from "motion/react";
+import {useMotionValueEvent, useScroll} from "motion/react";
+
+const MotionDiv = dynamic(
+    () => import("framer-motion").then(mod => mod.motion.div), {ssr: false}
+)
 
 export default function Navbar() {
     return (
@@ -25,7 +30,7 @@ function MobileNav() {
 
     return (
         <div>
-            <motion.div
+            <MotionDiv
                 variants={{
                     visible: {y: 0},
                     hidden: {y: "-150%"}
@@ -36,7 +41,7 @@ function MobileNav() {
                 <div
                     className="rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur bg-black bg-opacity-70 transparent-border">
                     <div className="h-11 w-11 rounded-full overflow-hidden">
-                        <Image src="/logo.png" alt="logo" width={44} height={44} className="h-full w-full"/>
+                        <Image src="/logo.jpg" alt="logo" width={44} height={44} className="h-full w-full"/>
                     </div>
                     <div className="px-2" onClick={() => setMenuOpened(!menuOpened)}>
                         {menuOpened ?
@@ -59,9 +64,9 @@ function MobileNav() {
                         </li>
                     </ul>
                 </div>
-            </motion.div>
+            </MotionDiv>
             <div
-                className={`${menuOpened ? 'h-dvh w-full top-0 backdrop-blur bg-black bg-opacity-70' : 'w-[calc(100vw-32px)] top-6 h-dvh invisible'} fixed z-40 left-1/2 -translate-x-1/2 transition-all duration-300`}>
+                className={`${menuOpened ? 'h-screen w-full top-0 backdrop-blur bg-black bg-opacity-70' : 'w-[calc(100vw-32px)] top-6 h-full invisible'} fixed z-40 left-1/2 -translate-x-1/2 transition-all duration-300`}>
             </div>
         </div>
 

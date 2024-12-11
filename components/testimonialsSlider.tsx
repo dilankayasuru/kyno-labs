@@ -1,7 +1,8 @@
 "use client"
+import React, { memo } from "react";
 import Star from "@/components/icons/start";
 import Image from "next/image";
-import {testimonials} from "@/public/assets";
+import { testimonials } from "@/public/assets";
 import Slider from "react-slick";
 
 export default function TestimonialsSlider() {
@@ -38,8 +39,7 @@ interface TestimonialCardProps {
     profilePic: string,
 }
 
-function TestimonialCard(props: TestimonialCardProps) {
-
+const TestimonialCard = memo((props: TestimonialCardProps) => {
     const {
         name,
         country,
@@ -59,14 +59,18 @@ function TestimonialCard(props: TestimonialCardProps) {
                             src={profilePic}
                             alt="profile-pic"
                             width={48} height={48}
-                            className="object-cover h-full w-full"/>
+                            className="object-cover h-full w-full"
+                            loading="lazy"
+                        />
                     </div>
                     <div>
                         <p>{name}</p>
                         <div className="flex items-center gap-2">
                             <Image
                                 src={`https://flagsapi.com/${countryCode}/shiny/24.png`} alt={`${country}-flag`}
-                                width={24} height={24}/>
+                                width={24} height={24}
+                                loading="lazy"
+                            />
                             <p className="text-secondary-text font-light text-sm">{country}</p>
                         </div>
                     </div>
@@ -78,14 +82,18 @@ function TestimonialCard(props: TestimonialCardProps) {
             </div>
         </div>
     )
-}
+});
 
-function RatingStarts(props: { count: number }) {
-    const {count} = props;
+TestimonialCard.displayName = "TestimonialCard";
+
+const RatingStarts = memo((props: { count: number }) => {
+    const { count } = props;
 
     return (
         <div className="flex gap-1">
-            {Array.from({length: count % 5 || 5}, (_, i) => <Star key={i} size={18}/>)}
+            {Array.from({ length: count % 5 || 5 }, (_, i) => <Star key={i} size={18} />)}
         </div>
     )
-}
+});
+
+RatingStarts.displayName = "RatingStarts";
