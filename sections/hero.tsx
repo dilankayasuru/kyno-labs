@@ -1,19 +1,54 @@
 "use client"
 import dynamic from "next/dynamic";
-const NeuralNetwork = dynamic(() => import("@/components/neural-network"), {ssr: false});
+
 const ShimmerButton = dynamic(() => import("@/components/ui/shimmerButton"), {ssr: false});
-import { useInView } from "motion/react";
-import {RefObject, useRef} from "react";
+import {useInView} from "motion/react";
+import {RefObject, useEffect, useRef, useState} from "react";
+import {View} from "@react-three/drei";
+import NeuralNetwork from "@/components/neural-network";
 
 export default function Hero() {
 
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref as RefObject<Element>, {once: true});
+// Keep track of mouse position
+    const [mousePosition, setMousePosition] = useState<{ x: number, y: number }>({
+        x: 0,
+        y: 0,
+    });
+
+    // Add event listener to the document to get current mouse position
+    useEffect(() => {
+        setMousePosition({
+            x: window.innerWidth,
+            y: window.innerHeight,
+        })
+        if (window.innerWidth < 600) {
+            return;
+        }
+        const handleMouseMove = (e: MouseEvent) => {
+            setMousePosition({
+                x: e.clientX,
+                y: e.clientY,
+            });
+        };
+        document.addEventListener("mousemove", handleMouseMove);
+        return () => {
+            document.removeEventListener("mousemove", handleMouseMove);
+        };
+    }, []);
 
     return (
         <div ref={ref} className="relative h-screen p-4 grid place-content-center">
-            <NeuralNetwork/>
-            <div className={`flex flex-col justify-center items-center ${isInView ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0' } transition-all duration-300`}>
+            <View className="h-screen w-full absolute top-0 left-0 -z-20 overflow-hidden">
+                <NeuralNetwork/>
+            </View>
+            <div
+                style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 50%)`}}
+                // style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 5%, rgba(0,0,0,1) 30%)`}}
+                className="w-screen h-screen absolute top-0 left-0 -z-10"></div>
+            <div
+                className={`flex flex-col justify-center items-center ${isInView ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'} transition-all duration-300`}>
                 <div className="flex flex-col justify-end items-end w-fit mb-4 select-none">
                     <h1 className="font-bold cursor-default text-6xl">
                         <span className="text-white">Kyno</span> <span className="text-primary-yellow">Labs</span>

@@ -6,6 +6,8 @@ import { projects } from "@/public/assets";
 const ProjectCard = dynamic(() => import("@/components/projectCard"), { ssr: false });
 
 export default function Projects() {
+
+
     return (
         <div className="px-6 py-9 text-white">
             <motion.div
