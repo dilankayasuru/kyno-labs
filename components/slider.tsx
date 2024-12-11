@@ -1,12 +1,12 @@
 "use client"
-import Slider from "react-slick";
+import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 export default function ImageSlider(props: { images: string[] }) {
-
-    const {images} = props;
+    const { images } = props;
 
     const settings = {
         dots: true,
@@ -25,18 +25,17 @@ export default function ImageSlider(props: { images: string[] }) {
         <div className="slider-container bg-black bg-opacity-50">
             {images.length > 1 &&
                 <Slider {...settings}>
-                    {
-                        images.map((image, id) => (
-                            <Image
-                                key={id}
-                                src={image}
-                                alt={`project image ${id}`}
-                                width={512}
-                                height={512}
-                                style={{width: "auto", height: "auto"}}
-                                className="aspect-auto w-full object-contain"/>
-                        ))
-                    }
+                    {images.map((image, id) => (
+                        <Image
+                            key={id}
+                            src={image}
+                            alt={`project image ${id}`}
+                            width={512}
+                            height={512}
+                            style={{ width: "auto", height: "auto" }}
+                            className="aspect-auto w-full object-contain"
+                        />
+                    ))}
                 </Slider>
             }
             {images.length === 1 &&
@@ -45,10 +44,10 @@ export default function ImageSlider(props: { images: string[] }) {
                     alt="project image"
                     width={512}
                     height={512}
-                    style={{width: "auto", height: "auto"}}
-                    className="aspect-auto w-full object-contain"/>
+                    style={{ width: "auto", height: "auto" }}
+                    className="aspect-auto w-full object-contain"
+                />
             }
         </div>
-
     );
 }

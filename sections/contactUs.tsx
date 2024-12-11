@@ -1,7 +1,7 @@
 "use client"
+import dynamic from "next/dynamic";
 import {motion} from "motion/react";
 import variants from "@/components/animation/variants";
-import {InputField, TextArea} from "@/components/inputField";
 import {FormEvent, useState} from "react";
 import Email from "@/components/icons/email";
 import Linkedin from "@/components/icons/linkedin";
@@ -9,6 +9,9 @@ import Instargram from "@/components/icons/instargram";
 import Facebook from "@/components/icons/facebook";
 import Phone from "@/components/icons/phone";
 import {contacts} from "@/public/assets";
+
+const InputField = dynamic(() => import("@/components/inputField").then(mod => mod.InputField), {ssr: false});
+const TextArea = dynamic(() => import("@/components/inputField").then(mod => mod.TextArea), {ssr: false});
 
 export default function ContactUs() {
     return (
@@ -37,7 +40,6 @@ export default function ContactUs() {
 }
 
 function ContactForm() {
-
     const [result, setResult] = useState({
         error: false,
         message: "",
@@ -108,7 +110,6 @@ function ContactForm() {
 }
 
 function ContactCard() {
-
     const iconMap: { [key: string]: JSX.Element } = {
         Email: <Email height={24} width={24} color="white"/>,
         Linkedin: <Linkedin height={24} width={24} color="white"/>,
@@ -127,13 +128,7 @@ function ContactCard() {
     )
 }
 
-interface ContactCardItemProps {
-    title: string,
-    value: string,
-    icon: React.ReactNode,
-}
-
-function ContactCardItem(props: ContactCardItemProps) {
+function ContactCardItem(props: { title: string, value: string, icon: React.ReactNode }) {
     const {title, value, icon} = props;
     return (
         <div className={`flex items-center gap-2 ${title === "Email" ? 'col-span-2 justify-center' : ''}`}>

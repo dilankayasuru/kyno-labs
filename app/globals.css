@@ -38,7 +38,14 @@ body {
 }
 
 .gradient-title {
-    @apply bg-gradient-to-r pb-1 inline-block text-transparent bg-clip-text from-white to-primary-blue text-4xl font-semibold;
+    background: linear-gradient(to right, white, #0000ff);
+    padding-bottom: 0.25rem;
+    display: inline-block;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: 2.25rem; /* equivalent to text-4xl */
+    font-weight: 600; /* equivalent to font-semibold */
 }
 
 .gradient-border {

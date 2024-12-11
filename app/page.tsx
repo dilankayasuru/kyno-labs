@@ -1,31 +1,30 @@
-import Hero from "@/sections/hero";
-import WhoWeAre from "@/sections/whoWeAre";
-import Background from "@/components/background";
-import Projects from "@/sections/projects";
-import Technologies from "@/sections/technologies";
-import Testimonials from "@/sections/testimonials";
-import ContactUs from "@/sections/contactUs";
-import Services from "@/sections/services";
-import Footer from "@/sections/footer";
-import Cube from "@/components/cube";
+import dynamic from "next/dynamic";
+const Background = dynamic(() => import("@/components/background"), {ssr: false});
+const Hero = dynamic(() => import("@/sections/hero"), {ssr: false});
+const WhoWeAre = dynamic(() => import("@/sections/whoWeAre"), {ssr: false});
+const Services = dynamic(() => import("@/sections/services"), {ssr: false});
+const Projects = dynamic(() => import("@/sections/projects"), {ssr: false});
+const Technologies = dynamic(() => import("@/sections/technologies"), {ssr: false});
+const Testimonials = dynamic(() => import("@/sections/testimonials"), {ssr: false});
+const ContactUs = dynamic(() => import("@/sections/contactUs"), {ssr: false});
+const Footer = dynamic(() => import("@/sections/footer"), {ssr: false});
+import CanvasView from "@/components/canvasView";
+
 
 export default function Home() {
+
     return (
         <div>
+            <CanvasView/>
+            <Background/>
             <Hero/>
-            <div>
-                <Background/>
-                <WhoWeAre/>
-                <div className="relative">
-                    <Cube/>
-                    <Services/>
-                </div>
-                <Projects/>
-                <Technologies/>
-                <Testimonials/>
-                <ContactUs/>
-                <Footer/>
-            </div>
+            <WhoWeAre/>
+            <Services/>
+            <Projects/>
+            <Technologies/>
+            <Testimonials/>
+            <ContactUs/>
+            <Footer/>
         </div>
     );
 }

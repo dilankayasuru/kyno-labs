@@ -1,62 +1,10 @@
 "use client"
 
-import {Canvas, useFrame, useThree} from "@react-three/fiber";
+import {useFrame, useThree} from "@react-three/fiber";
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Group, BufferGeometry, Vector3, AdditiveBlending} from "three";
 
 export default function NeuralNetwork() {
-
-    // Keep track of mouse position
-    const [mousePosition, setMousePosition] = useState<{ x: number, y: number }>({
-        x: 0,
-        y: 0,
-    });
-
-    // Add event listener to the document to get current mouse position
-    useEffect(() => {
-        setMousePosition({
-            x: window.innerWidth,
-            y: window.innerHeight,
-        })
-        if (window.innerWidth < 600 ) {
-            return;
-        }
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({
-                x: e.clientX,
-                y: e.clientY,
-            });
-        };
-        document.addEventListener("mousemove", handleMouseMove);
-        return () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-        };
-    }, []);
-
-    return (
-        <div className="w-full h-dvh absolute top-0 left-0 -z-10">
-            <Scene/>
-            <div
-                // Added gradient to control the visibility of neural network animation
-                // Spotlight gradient for mobile view
-                style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 50%)`}}
-                // style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 5%, rgba(0,0,0,1) 30%)`}}
-                className="w-dvw h-dvh absolute top-0 left-0"></div>
-        </div>
-    )
-}
-
-function Scene() {
-    return (
-        <Canvas id="neural-network-canvas" camera={{position: [0, 0, 10]}} gl={{alpha: false}}>
-            <directionalLight position={[5, 5, 5]} intensity={1}/>
-            <ambientLight intensity={0.5}/>
-            <Renderer/>
-        </Canvas>
-    )
-}
-
-function Renderer() {
 
     // References to the group, particles, and lines
     const groupRef = useRef<Group>(null);
@@ -104,7 +52,7 @@ function Renderer() {
 
     // Effect to handle mouse movement
     useEffect(() => {
-        if (window.innerWidth < 600 ) {
+        if (window.innerWidth < 600) {
             return;
         }
         const handleMouseMove = (event: MouseEvent) => {
@@ -150,7 +98,6 @@ function Renderer() {
 
         for (let i = 0; i < particleCount; i++) particlesData[i].numConnections = 0;
 
-        // Update the position of the first particle to follow the mouse
         particlePositions[0] = mousePosition.x;
         particlePositions[1] = mousePosition.y;
         particlePositions[2] = mousePosition.z;

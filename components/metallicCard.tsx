@@ -1,7 +1,9 @@
 "use client"
-import {motion} from "motion/react";
+import { motion } from "framer-motion";
 import variants from "@/components/animation/variants";
-export default function MetallicCard(props: { children: React.ReactNode, className?: string }) {
+import {memo} from "react";
+
+const MetallicCard = memo(function MetallicCard(props: { children: React.ReactNode, className?: string }) {
     const {children, className} = props;
     return (
         <motion.div
@@ -13,4 +15,8 @@ export default function MetallicCard(props: { children: React.ReactNode, classNa
             {children}
         </motion.div>
     )
-}
+});
+
+MetallicCard.displayName = "MetallicCard";
+
+export default MetallicCard;
