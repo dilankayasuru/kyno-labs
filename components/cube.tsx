@@ -11,7 +11,7 @@ import {memo} from "react";
 
 export default function Cube() {
     return (
-        <div className="w-full h-dvh absolute top-0 left-0 -z-50">
+        <div className="w-full h-screen absolute top-0 left-0 -z-50">
             <CubeScene/>
         </div>
     )

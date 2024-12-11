@@ -12,20 +12,16 @@ import Cube from "@/components/cube";
 export default function Home() {
     return (
         <div>
+            <Background/>
             <Hero/>
-            <div>
-                <Background/>
-                <WhoWeAre/>
-                <div className="relative">
-                    <Cube/>
-                    <Services/>
-                </div>
-                <Projects/>
-                <Technologies/>
-                <Testimonials/>
-                <ContactUs/>
-                <Footer/>
-            </div>
+            <WhoWeAre/>
+            <Cube/>
+            <Services/>
+            <Projects/>
+            <Technologies/>
+            <Testimonials/>
+            <ContactUs/>
+            <Footer/>
         </div>
     );
 }

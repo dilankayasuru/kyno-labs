@@ -34,14 +34,14 @@ export default function NeuralNetwork() {
     }, []);
 
     return (
-        <div className="w-full h-dvh absolute top-0 left-0 -z-10">
+        <div className="w-full h-screen absolute top-0 left-0 -z-10">
             <Scene/>
             <div
                 // Added gradient to control the visibility of neural network animation
                 // Spotlight gradient for mobile view
                 style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 50%)`}}
                 // style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 5%, rgba(0,0,0,1) 30%)`}}
-                className="w-dvw h-dvh absolute top-0 left-0"></div>
+                className="w-screen h-screen absolute top-0 left-0"></div>
         </div>
     )
 }

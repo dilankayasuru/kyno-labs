@@ -25,7 +25,7 @@ export default function Background() {
                 repeat: Infinity,
                 repeatType: "loop",
             }}
-            className="h-dvh w-full fixed -z-20 bg-opacity-0 top-0 left-0 backdrop-blur"
+            className="h-screen w-full fixed -z-20 bg-opacity-0 top-0 left-0 backdrop-blur background-12"
         />
     );
 }

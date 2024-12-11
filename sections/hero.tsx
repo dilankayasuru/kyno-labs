@@ -10,7 +10,7 @@ export default function Hero() {
     const isInView = useInView(ref as RefObject<Element>, {once: true});
 
     return (
-        <div ref={ref} className="relative h-dvh p-4 grid place-content-center">
+        <div ref={ref} className="relative h-screen p-4 grid place-content-center">
             <NeuralNetwork/>
             <div className={`flex flex-col justify-center items-center ${isInView ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0' } transition-all duration-300`}>
                 <div className="flex flex-col justify-end items-end w-fit mb-4 select-none">
