@@ -6,9 +6,8 @@ import {
     Lightformer,
     RoundedBox,
     Float,
-    PerformanceMonitor
 } from "@react-three/drei";
-import {memo, useEffect, useState} from "react";
+import {memo} from "react";
 
 export default function Cube() {
     return (
