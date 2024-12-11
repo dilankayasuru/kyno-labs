@@ -9,7 +9,7 @@ export default function Projects() {
 
 
     return (
-        <div className="px-6 py-9 text-white">
+        <div className="px-6 py-9 text-white" id="projects">
             <motion.div
                 initial="offscreen"
                 whileInView="onscreen"

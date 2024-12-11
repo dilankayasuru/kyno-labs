@@ -39,7 +39,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <div ref={ref} className="relative h-screen p-4 grid place-content-center">
+        <div id="home" ref={ref} className="relative h-screen p-4 grid place-content-center">
             <View className="h-screen w-full absolute top-0 left-0 -z-20 overflow-hidden">
                 <NeuralNetwork/>
             </View>

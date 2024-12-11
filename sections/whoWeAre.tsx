@@ -7,7 +7,7 @@ const MetallicCard = dynamic(() => import("@/components/metallicCard"), { ssr: f
 
 export default function WhoWeAre() {
     return (
-        <div className="px-6 py-9 text-white">
+        <div className="px-6 py-9 text-white" id="about">
             <motion.div
                 initial="offscreen"
                 whileInView="onscreen"

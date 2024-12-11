@@ -14,7 +14,7 @@ export default function Technologies() {
     }, []);
 
     return (
-        <div className="px-6 py-8 text-white">
+        <div className="px-6 py-8 text-white" id="technologies">
             <motion.div
                 initial="offscreen"
                 whileInView="onscreen"

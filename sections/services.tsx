@@ -10,7 +10,7 @@ const Cube = dynamic(() => import("@/components/cube"), {ssr: false});
 
 export default function Services() {
     return (
-        <div className="relative">
+        <div className="relative" id="services">
             <View className="w-full h-screen absolute top-0 backdrop-blur-sm -z-10 bg-black bg-opacity-15">
                 <Cube/>
             </View>

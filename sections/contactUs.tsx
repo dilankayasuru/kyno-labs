@@ -15,14 +15,15 @@ const TextArea = dynamic(() => import("@/components/inputField").then(mod => mod
 
 export default function ContactUs() {
     return (
-        <div className="px-6 py-8 text-white">
-            <motion.div
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{once: true, amount: 0.8}}
-                variants={variants}>
+        <motion.div
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{once: true, amount: 0.8}}
+            variants={variants}
+            className="px-6 py-8 text-white" id="contact">
+            <div>
                 <p className="gradient-title">Contact us</p>
-            </motion.div>
+            </div>
             <ContactForm/>
             <motion.div
                 initial="offscreen"
@@ -35,7 +36,7 @@ export default function ContactUs() {
                 </p>
                 <ContactCard/>
             </motion.div>
-        </div>
+        </motion.div>
     )
 }
 
