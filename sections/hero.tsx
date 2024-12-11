@@ -1,6 +1,7 @@
 "use client"
-import NeuralNetwork from "@/components/neural-network";
-import ShimmerButton from "@/components/ui/shimmerButton";
+import dynamic from "next/dynamic";
+const NeuralNetwork = dynamic(() => import("@/components/neural-network"), {ssr: false});
+const ShimmerButton = dynamic(() => import("@/components/ui/shimmerButton"), {ssr: false});
 import { useInView } from "motion/react";
 import {RefObject, useRef} from "react";
 

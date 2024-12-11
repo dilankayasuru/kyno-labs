@@ -3,6 +3,7 @@
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Group, BufferGeometry, Vector3, AdditiveBlending} from "three";
+import {Preload} from "@react-three/drei";
 
 export default function NeuralNetwork() {
 

@@ -1,24 +1,20 @@
 "use client"
+import {motion} from "motion/react";
 
-import {motion} from "framer-motion";
+const gradients = [
+    'radial-gradient(circle at 0% 0%, rgba(40,30,221, 0.20), rgb(0,0,0))',
+    'radial-gradient(circle at 0% 100%, rgba(40,30,221, 0.25), rgb(0,0,0))',
+    'radial-gradient(circle at 50% 50%, rgba(40,30,221, 0.20), rgb(0,0,0))',
+    'radial-gradient(circle at 100% 0%, rgba(40,30,221, 0.25), rgb(0,0,0))',
+    'radial-gradient(circle at 100% 100%, rgba(40,30,221, 0.20), rgb(0,0,0))',
+    'radial-gradient(circle at 50% 50%, rgba(40,30,221, 0.25), rgb(0,0,0))',
+    'radial-gradient(circle at 0% 0%, rgba(40,30,221, 0.20), rgb(0,0,0))',
+];
 
 export default function Background() {
-
-    const gradients = [
-        'radial-gradient(circle at 0% 0%, rgba(40,30,221, 0.20), rgb(0,0,0))',
-        'radial-gradient(circle at 0% 100%, rgba(40,30,221, 0.25), rgb(0,0,0))',
-        'radial-gradient(circle at 50% 50%, rgba(40,30,221, 0.20), rgb(0,0,0))',
-        'radial-gradient(circle at 100% 0%, rgba(40,30,221, 0.25), rgb(0,0,0))',
-        'radial-gradient(circle at 100% 100%, rgba(40,30,221, 0.20), rgb(0,0,0))',
-        'radial-gradient(circle at 50% 50%, rgba(40,30,221, 0.25), rgb(0,0,0))',
-        'radial-gradient(circle at 0% 0%, rgba(40,30,221, 0.20), rgb(0,0,0))',
-    ]
-
     return (
         <motion.div
-            animate={{
-                backgroundImage: gradients
-            }}
+            animate={{backgroundImage: gradients}}
             transition={{
                 duration: 20,
                 ease: "easeInOut",
