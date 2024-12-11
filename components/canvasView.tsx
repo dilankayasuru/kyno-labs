@@ -1,6 +1,6 @@
 "use client"
 import {Canvas} from "@react-three/fiber";
-import {Loader, View} from "@react-three/drei";
+import {View} from "@react-three/drei";
 import {Suspense} from "react";
 
 export default function CanvasView() {
