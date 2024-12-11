@@ -1,7 +1,14 @@
 "use client"
 import {Canvas} from "@react-three/fiber";
-import {MeshTransmissionMaterial, Environment, Lightformer, RoundedBox, Float} from "@react-three/drei";
-import {useEffect, useState} from "react";
+import {
+    MeshTransmissionMaterial,
+    Environment,
+    Lightformer,
+    RoundedBox,
+    Float,
+    PerformanceMonitor
+} from "@react-three/drei";
+import {memo, useEffect, useState} from "react";
 
 export default function Cube() {
     return (
@@ -13,23 +20,8 @@ export default function Cube() {
 
 function CubeScene() {
 
-    const [mousePosition, setMousePosition] = useState({x: 0, y: 0});
-
-    const handleMouseMove = (e: MouseEvent) => {
-        setMousePosition({x: e.clientX, y: e.clientY})
-    }
-
-    useEffect(() => {
-        if (window.innerWidth < 600 ) {
-            return;
-        }
-        document.addEventListener('mousemove', handleMouseMove);
-        return () =>
-            document.removeEventListener('mousemove', handleMouseMove);
-    }, []);
-
     return (
-        <Canvas shadows camera={{position: [1, -5, 15], fov: 35, near: 1, far: 50}}>
+        <Canvas frameloop="always" shadows camera={{position: [1, -5, 15], fov: 35, near: 1, far: 50}}>
             <ambientLight/>
             <directionalLight castShadow intensity={0.6} position={[0, 0, 10]}/>
             <Environment resolution={256}>
@@ -44,17 +36,17 @@ function CubeScene() {
                     <Lightformer intensity={2} rotation-y={-Math.PI / 2} position={[10, 1, 0]} scale={[50, 2, 1]}/>
                 </group>
             </Environment>
-            <Float floatIntensity={1} rotationIntensity={1} speed={1.5}>
-                <group position={[-mousePosition.x / 9990, mousePosition.y / 9990, 0]} rotation={[1, -0.5, 0]}
+            <Float floatIntensity={0.5} rotationIntensity={0.5} speed={1}>
+                <group position={[0, 0, 0]} rotation={[1, -0.5, 0]}
                        scale={1.25}>
-                    <CubeMesh position={[0, 0, 0]} color="black"/>
-                    <CubeMesh position={[0, 0, 1]} color="black"/>
-                    <CubeMesh position={[0, 1, 0]} color="#F79D25"/>
-                    <CubeMesh position={[0, 1, 1]} color="black"/>
-                    <CubeMesh position={[1, 0, 0]} color="black"/>
-                    <CubeMesh position={[1, 0, 1]} color="black"/>
-                    <CubeMesh position={[1, 1, 0]} color="black"/>
-                    <CubeMesh position={[1, 1, 1]} color="#2B1EDD"/>
+                    <MemoizedCubeMesh position={[0, 0, 0]} color="black"/>
+                    <MemoizedCubeMesh position={[0, 0, 1]} color="black"/>
+                    <MemoizedCubeMesh position={[0, 1, 0]} color="#F79D25"/>
+                    <MemoizedCubeMesh position={[0, 1, 1]} color="black"/>
+                    <MemoizedCubeMesh position={[1, 0, 0]} color="black"/>
+                    <MemoizedCubeMesh position={[1, 0, 1]} color="black"/>
+                    <MemoizedCubeMesh position={[1, 1, 0]} color="black"/>
+                    <MemoizedCubeMesh position={[1, 1, 1]} color="#2B1EDD"/>
                 </group>
             </Float>
         </Canvas>
@@ -96,3 +88,5 @@ function CubeMesh(props: { position: [number, number, number], color: string }) 
         </mesh>
     )
 }
+
+const MemoizedCubeMesh = memo(CubeMesh);
