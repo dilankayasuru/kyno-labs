@@ -15,28 +15,34 @@ const TextArea = dynamic(() => import("@/components/inputField").then(mod => mod
 
 export default function ContactUs() {
     return (
-        <motion.div
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{once: true, amount: 0.8}}
-            variants={variants}
-            className="px-6 py-8 text-white" id="contact">
-            <div>
-                <p className="gradient-title">Contact us</p>
-            </div>
-            <ContactForm/>
+        <div className="md:max-w-screen-xl md:mx-auto md:my-11">
             <motion.div
                 initial="offscreen"
                 whileInView="onscreen"
                 viewport={{once: true, amount: 0.8}}
                 variants={variants}
-                className="mt-12">
-                <p className="text-secondary-text mb-4">
-                    Let us discuss how we can help you leverage Tech and AI to achieve your project and business goals.
-                </p>
-                <ContactCard/>
+                className="px-6 py-8 text-white" id="contact">
+                <div>
+                    <p className="gradient-title">Contact us</p>
+                </div>
+                <div className="md:flex md:gap-8 md:mt-8">
+                    <ContactForm/>
+                    <motion.div
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{once: true, amount: 0.8}}
+                        variants={variants}
+                        className="mt-12 md:mt-0 md:w-full">
+                        <p className="text-secondary-text mb-4 md:text-xl">
+                            Let us discuss how we can help you leverage Tech and AI to achieve your project and business
+                            goals.
+                        </p>
+                        <ContactCard/>
+                    </motion.div>
+                </div>
             </motion.div>
-        </motion.div>
+        </div>
+
     )
 }
 
@@ -93,7 +99,7 @@ function ContactForm() {
             whileInView="onscreen"
             viewport={{once: true, amount: 0.8}}
             variants={variants}
-            className="mt-8">
+            className="mt-8 md:mt-0 md:w-full">
             <p className="mb-4">Send us a message</p>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <InputField id="name" label="Name" placeholder="Name" type="text" required={true}/>
@@ -121,7 +127,7 @@ function ContactCard() {
 
     return (
         <div
-            className="gradient-border bg-[linear-gradient(135deg,_#ffffff21,_#d9d9d900)] bg-black p-4 rounded-3xl grid grid-cols-2 gap-4">
+            className="md:max-w-lg md:mt-8 md:p-8 gradient-border bg-[linear-gradient(135deg,_#ffffff21,_#d9d9d900)] bg-black p-4 rounded-3xl grid grid-cols-2 gap-4">
             {contacts.map((contact, id) =>
                 <ContactCardItem key={id} title={contact.title} value={contact.value} icon={iconMap[contact.icon]}/>
             )}
@@ -132,7 +138,7 @@ function ContactCard() {
 function ContactCardItem(props: { title: string, value: string, icon: React.ReactNode }) {
     const {title, value, icon} = props;
     return (
-        <div className={`flex items-center gap-2 ${title === "Email" ? 'col-span-2 justify-center' : ''}`}>
+        <div className={`flex items-center gap-2 ${title === "Email" ? 'col-span-2 md:col-span-1 justify-center md:justify-normal' : ''}`}>
             <div>
                 {icon}
             </div>

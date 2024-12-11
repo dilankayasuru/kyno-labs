@@ -46,6 +46,7 @@ body {
     -webkit-background-clip: text;
     font-size: 2.25rem; /* equivalent to text-4xl */
     font-weight: 600; /* equivalent to font-semibold */
+    @apply md:text-5xl;
 }
 
 .gradient-border {
@@ -84,11 +85,20 @@ body {
 .testimonial-slider .slick-arrow.slick-next {
     @apply right-0 before:content-[url('/arrow-next.svg')] w-8 h-8;
 }
+
 .testimonial-slider .slick-arrow.slick-prev {
     @apply left-auto right-9 before:content-[url('/arrow-prev.svg')] w-8 h-8;
 }
+
 .testimonial-slider {
     @apply pt-8;
+}
+
+.nav-link {
+    @apply
+    hover:text-primary-yellow
+    active:text-secondary-text
+    transition-all duration-300;
 }
 
 @layer base {
