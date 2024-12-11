@@ -3,7 +3,6 @@
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Group, BufferGeometry, Vector3, AdditiveBlending} from "three";
-import {Preload} from "@react-three/drei";
 
 export default function NeuralNetwork() {
 
@@ -19,7 +18,7 @@ export default function NeuralNetwork() {
             x: window.innerWidth,
             y: window.innerHeight,
         })
-        if (window.innerWidth < 600 ) {
+        if (window.innerWidth < 600) {
             return;
         }
         const handleMouseMove = (e: MouseEvent) => {
@@ -105,7 +104,7 @@ function Renderer() {
 
     // Effect to handle mouse movement
     useEffect(() => {
-        if (window.innerWidth < 600 ) {
+        if (window.innerWidth < 600) {
             return;
         }
         const handleMouseMove = (event: MouseEvent) => {
