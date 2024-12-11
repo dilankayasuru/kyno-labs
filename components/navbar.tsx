@@ -52,15 +52,15 @@ function MobileNav() {
                 </div>
                 <div className={`${menuOpened ? 'block' : 'hidden invisible'} px-4`}>
                     <ul className="mt-8">
-                        <li><MobileNavItem name="Home"/></li>
-                        <li><MobileNavItem name="Services"/></li>
-                        <li><MobileNavItem name="Projects"/></li>
-                        <li><MobileNavItem name="Tech"/></li>
-                        <li><MobileNavItem name="Testimonials"/></li>
-                        <li>
-                            <div className="p-6 mt-2">
+                        <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Home" link="#home"/></li>
+                        <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Services" link="#services"/></li>
+                        <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Projects" link="#projects"/></li>
+                        <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Tech" link="#technologies"/></li>
+                        <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Testimonials" link="#testimonials"/></li>
+                        <li onClick={() => setMenuOpened(!menuOpened)}>
+                            <Link href="#contact" className="p-6 mt-2">
                                 <ContactUsBtn/>
-                            </div>
+                            </Link>
                         </li>
                     </ul>
                 </div>
