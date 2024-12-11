@@ -66,7 +66,7 @@ function MobileNav() {
                 </div>
             </MotionDiv>
             <div
-                className={`${menuOpened ? 'h-screen w-full top-0 backdrop-blur bg-black bg-opacity-70' : 'w-[calc(100vw-32px)] top-6 h-0'} fixed z-40 left-1/2 -translate-x-1/2 transition-all duration-300`}>
+                className={`${menuOpened ? 'h-screen w-full top-0 backdrop-blur bg-black bg-opacity-70' : 'w-[calc(100vw-32px)] top-6 h-full invisible'} fixed z-40 left-1/2 -translate-x-1/2 transition-all duration-300`}>
             </div>
         </div>
 
