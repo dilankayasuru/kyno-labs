@@ -1,5 +1,5 @@
 "use client"
-import {MouseEventHandler, useState} from "react";
+import {useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MenuClose from "./icons/menuClose";
