@@ -84,6 +84,24 @@ export const projects = [
             "/mockup-3.jpg",
             "/mockup-2.jpg"
         ]
+    },
+    {
+        "title": "ICD Code prediction from Diagnosis ZWSP and Clinical Text using NLP",
+        "description": "Predicted student grades using machine learning models and provided explanations for the predictions using SHAP and LIME to support educators in understanding key factors and improving outcomes.",
+        "images": [
+            "/mockup-1.jpg",
+            "/mockup-3.jpg",
+            "/mockup-2.jpg"
+        ]
+    },
+    {
+        "title": "ICD Code prediction from Diagnosis ZWSP and Clinical Text using NLP",
+        "description": "Predicted student grades using machine learning models and provided explanations for the predictions using SHAP and LIME to support educators in understanding key factors and improving outcomes.",
+        "images": [
+            "/mockup-1.jpg",
+            "/mockup-3.jpg",
+            "/mockup-2.jpg"
+        ]
     }
 ]
 

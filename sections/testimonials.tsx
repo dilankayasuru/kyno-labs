@@ -6,7 +6,7 @@ const TestimonialsSlider = dynamic(() => import("@/components/testimonialsSlider
 
 export default function Testimonials() {
     return (
-        <div className="px-6 py-8 text-white" id="testimonials">
+        <div className="px-6 py-9 text-white md:max-w-screen-xl md:mx-auto md:my-0" id="testimonials">
             <motion.div
                 initial="offscreen"
                 whileInView="onscreen"

@@ -1,8 +1,8 @@
 "use client"
-import React, { memo } from "react";
+import React, {memo} from "react";
 import Star from "@/components/icons/start";
 import Image from "next/image";
-import { testimonials } from "@/public/assets";
+import {testimonials} from "@/public/assets";
 import Slider from "react-slick";
 
 export default function TestimonialsSlider() {
@@ -11,12 +11,38 @@ export default function TestimonialsSlider() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         autoplay: true,
         autoplaySpeed: 3000,
         cssEase: "linear",
         pauseOnHover: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     };
 
     return (
@@ -87,11 +113,11 @@ const TestimonialCard = memo((props: TestimonialCardProps) => {
 TestimonialCard.displayName = "TestimonialCard";
 
 const RatingStarts = memo((props: { count: number }) => {
-    const { count } = props;
+    const {count} = props;
 
     return (
         <div className="flex gap-1">
-            {Array.from({ length: count % 5 || 5 }, (_, i) => <Star key={i} size={18} />)}
+            {Array.from({length: count % 5 || 5}, (_, i) => <Star key={i} size={18}/>)}
         </div>
     )
 });

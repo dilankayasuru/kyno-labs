@@ -1,6 +1,6 @@
 "use client"
 import {Canvas} from "@react-three/fiber";
-import {View} from "@react-three/drei";
+import {OrthographicCamera, View} from "@react-three/drei";
 import {Suspense} from "react";
 
 export default function CanvasView() {
@@ -21,10 +21,8 @@ export default function CanvasView() {
                 powerPreference: "high-performance",
                 antialias: true
             }}
-            camera={{
-                fov: 100,
-            }}
         >
+            <OrthographicCamera makeDefault position={[0, 0, 5]} zoom={60} />
             <Suspense fallback={null}>
                 <View.Port/>
             </Suspense>

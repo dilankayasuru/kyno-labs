@@ -1,4 +1,6 @@
 import dynamic from "next/dynamic";
+
+const CanvasView = dynamic(() => import("@/components/canvasView"), {ssr: false})
 const Background = dynamic(() => import("@/components/background"), {ssr: false});
 const Hero = dynamic(() => import("@/sections/hero"), {ssr: false});
 const WhoWeAre = dynamic(() => import("@/sections/whoWeAre"), {ssr: false});
@@ -8,8 +10,6 @@ const Technologies = dynamic(() => import("@/sections/technologies"), {ssr: fals
 const Testimonials = dynamic(() => import("@/sections/testimonials"), {ssr: false});
 const ContactUs = dynamic(() => import("@/sections/contactUs"), {ssr: false});
 const Footer = dynamic(() => import("@/sections/footer"), {ssr: false});
-import CanvasView from "@/components/canvasView";
-
 
 export default function Home() {
 
