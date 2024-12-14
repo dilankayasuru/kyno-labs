@@ -1,6 +1,6 @@
 "use client"
 import {Canvas} from "@react-three/fiber";
-import {View} from "@react-three/drei";
+import {Preload, View} from "@react-three/drei";
 import {Suspense} from "react";
 import useMediaQuery from "@/hooks/customHooks";
 
@@ -27,6 +27,7 @@ export default function CanvasView() {
         >
             <Suspense fallback={null}>
                 <View.Port/>
+                <Preload all/>
             </Suspense>
         </Canvas>
     )
