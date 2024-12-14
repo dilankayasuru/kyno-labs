@@ -3,9 +3,17 @@ import {
     MeshTransmissionMaterial,
     RoundedBox, Float, Environment,
 } from "@react-three/drei";
-import {memo} from "react";
-import useMediaQuery from "@/hooks/customHooks";
+import {memo, useCallback, useEffect, useRef} from "react";
+import {useFrame} from "@react-three/fiber";
+import {useSpring} from "motion/react";
+import {Group} from "three";
 
+interface CubeProps {
+    position: {
+        x: number,
+        y: number,
+    }
+}
 
 const CubeMesh = memo(function CubeMesh(props: { position: [number, number, number], color: string }) {
     const {position, color} = props;
@@ -40,8 +48,31 @@ const CubeMesh = memo(function CubeMesh(props: { position: [number, number, numb
         </mesh>)
 });
 
-export default function Cube() {
-    const isDesktop = useMediaQuery('(min-width: 768px)');
+export default function Cube(props: CubeProps) {
+    const {position} = props;
+
+    const ref = useRef<Group>(null);
+    const x = useSpring(0, {damping: 15});
+    const y = useSpring(0, {damping: 15});
+
+    useEffect(() => {
+        if (position) {
+            x.set(position.x);
+            y.set(position.y);
+        }
+    }, [position, x, y]);
+
+    const renderCubeMesh = useCallback((position: [number, number, number], color: string) => (
+        <CubeMesh key={position.toString()} position={position} color={color}/>
+    ), []);
+
+    useFrame(() => {
+        if (ref.current) {
+            ref.current.position.x = x.get();
+            ref.current.position.y = y.get();
+            ref.current.position.z = -5;
+        }
+    });
 
     return (
         <group>
@@ -50,20 +81,19 @@ export default function Cube() {
             <Float
                 speed={1}
                 rotationIntensity={1}
-                floatIntensity={1.5}>
+                floatIntensity={1}>
                 <group
-                    position={[0, -2.5, 0]}
-                    rotation={[0, 0.05, 0.25]}
-                    visible={isDesktop}
+                    ref={ref}
+                    rotation={[0, 0.05, 1]}
                     scale={2.3}>
-                    <CubeMesh position={[0, 0, 0]} color={"black"}/>
-                    <CubeMesh position={[0, 0, 1]} color={"#F79D25"}/>
-                    <CubeMesh position={[0, 1, 0]} color={"black"}/>
-                    <CubeMesh position={[0, 1, 1]} color={"black"}/>
-                    <CubeMesh position={[1, 0, 0]} color={"black"}/>
-                    <CubeMesh position={[1, 0, 1]} color={"black"}/>
-                    <CubeMesh position={[1, 1, 0]} color={"black"}/>
-                    <CubeMesh position={[1, 1, 1]} color={"#2B1EDD"}/>
+                    {renderCubeMesh([0, 0, 0], "black")}
+                    {renderCubeMesh([0, 0, 1], "#F79D25")}
+                    {renderCubeMesh([0, 1, 0], "black")}
+                    {renderCubeMesh([0, 1, 1], "black")}
+                    {renderCubeMesh([1, 0, 0], "black")}
+                    {renderCubeMesh([1, 0, 1], "black")}
+                    {renderCubeMesh([1, 1, 0], "black")}
+                    {renderCubeMesh([1, 1, 1], "#2B1EDD")}
                 </group>
             </Float>
             <Environment preset="city" environmentIntensity={0.5}/>
