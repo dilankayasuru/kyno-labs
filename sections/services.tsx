@@ -25,13 +25,9 @@ export default function Services() {
                 <p className="gradient-title">Our services</p>
             </motion.div>
             <div className="md:flex md:gap-4 md:justify-center md:w-full md:h-full md:relative">
-                {isDesktop &&
-                    <div className="w-full min-w-96 h-[512px] sticky top-0">
-                        <View className="h-full w-full">
-                            <Cube position={{x: 0, y: -2}}/>
-                        </View>
-                    </div>
-                }
+                <View visible={isDesktop} className="md:w-full md:min-w-96 md:h-[512px] md:sticky md:top-0">
+                    <Cube position={{x: 0, y: -2}}/>
+                </View>
                 <div className="md:flex md:justify-center md:items-center md:w-full">
                     <motion.div
                         initial="offscreen"

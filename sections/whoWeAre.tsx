@@ -34,11 +34,9 @@ export default function WhoWeAre() {
         <div
             ref={container}
             className="md:relative px-6 py-9 text-white" id="about">
-            {isDesktop &&
-                <View className="w-full h-full absolute top-0 left-0">
-                    <Cube position={position}/>
-                </View>
-            }
+            <View visible={isDesktop} className="w-full h-full absolute top-0 left-0">
+                <Cube position={position}/>
+            </View>
             <div className="md:text-center md:grid md:place-content-center">
                 <motion.div
                     initial="offscreen"

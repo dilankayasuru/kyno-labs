@@ -1,11 +1,13 @@
 "use client"
 import dynamic from "next/dynamic";
+
 const ShimmerButton = dynamic(() => import("@/components/ui/shimmerButton"), {ssr: false});
 const NeuralNetwork = dynamic(() => import("@/components/neural-network"), {ssr: false});
 import {useInView} from "motion/react";
 import {RefObject, useEffect, useRef, useState} from "react";
-import {View} from "@react-three/drei";
+// import {View} from "@react-three/drei";
 import useMediaQuery from "@/hooks/customHooks";
+import {Canvas} from "@react-three/fiber";
 
 export default function Hero() {
     const isDesktop = useMediaQuery('(min-width: 768px)');
@@ -38,12 +40,22 @@ export default function Hero() {
 
     return (
         <div id="home" ref={ref} className="relative h-screen p-4 grid place-content-center">
-            <View className="h-screen w-full absolute top-0 left-0 -z-20 overflow-hidden">
+            <Canvas
+                style={{
+                    height: "100vh",
+                    width: "100%",
+                    position: "absolute",
+                    zIndex: -10,
+                }}
+                camera={{position: [0, 0, 10]}} gl={{alpha: false}}>
                 <NeuralNetwork/>
-            </View>
+            </Canvas>
+            {/*<View visible={isDesktop} className="h-screen w-full absolute top-0 left-0 -z-20 overflow-hidden">*/}
+            {/*    <NeuralNetwork/>*/}
+            {/*</View>*/}
             <div
                 style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 0%, rgba(0,0,0,1) ${isDesktop ? 30 : 50}%)`}}
-                className="w-full h-screen absolute top-0 left-0 -z-10"></div>
+                className="w-full h-screen absolute top-0 left-0 -z-10 pointer-events-none"></div>
             <div
                 className={`flex flex-col justify-center items-center ${isInView ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'} transition-all duration-300`}>
                 <div className="flex flex-col justify-end items-end w-fit mb-4 select-none">
