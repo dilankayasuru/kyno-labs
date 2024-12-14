@@ -3,8 +3,10 @@
 import {useFrame, useThree} from "@react-three/fiber";
 import {useEffect, useMemo, useRef, useState} from "react";
 import {Group, BufferGeometry, Vector3, AdditiveBlending} from "three";
+import useMediaQuery from "@/hooks/customHooks";
 
 export default function NeuralNetwork() {
+    const isDesktop = useMediaQuery('(min-width: 768px)');
 
     // References to the group, particles, and lines
     const groupRef = useRef<Group>(null);
@@ -12,8 +14,8 @@ export default function NeuralNetwork() {
     const linesRef = useRef<BufferGeometry>(null);
 
     // Constants
-    const maxParticleCount = 800;
-    const particleCount = 650;
+    const maxParticleCount = 700;
+    const particleCount = 600;
     const r = 17;
     const maxConnections = 10;
     const maxDistance = 2.5;
@@ -35,36 +37,30 @@ export default function NeuralNetwork() {
         numConnections: number;
     }
 
-    // Array for particle data
     const particlesData = useMemo(() =>
             new Array<ParticleData>(maxParticleCount).fill({velocity: new Vector3(), numConnections: 0}),
         [maxParticleCount]
     );
 
-    // Vector for calculations
     const v = useMemo(() => new Vector3(), []);
 
-    // State for mouse position
     const [mousePosition, setMousePosition] = useState<Vector3>(new Vector3());
 
-    // Get size and viewport from useThree hook
     const {size, viewport} = useThree();
 
-    // Effect to handle mouse movement
     useEffect(() => {
-        if (window.innerWidth < 600) {
+        if (!isDesktop) {
+            setMousePosition(new Vector3(viewport.width, viewport.height, 0))
             return;
         }
         const handleMouseMove = (event: MouseEvent) => {
             const x = (event.clientX / size.width) * 2 - 1;
             const y = -(event.clientY / size.height) * 2 + 1;
-            const z = 0;
-            setMousePosition(new Vector3(x * viewport.width / 2, y * viewport.height / 2, z));
+            setMousePosition(new Vector3(x * viewport.width / 2, y * viewport.height / 2, 0));
         };
-
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, [size, viewport]);
+    }, [size, viewport, isDesktop]);
 
     // Effect to initialize particle positions and velocities
     useEffect(() => {
@@ -80,7 +76,7 @@ export default function NeuralNetwork() {
             const v = new Vector3(
                 -1 + Math.random() * 2,
                 -1 + Math.random() * 2,
-                0 // Constrain to the XY plane
+                0
             );
             particlesData[i] = {velocity: v.normalize().divideScalar(300), numConnections: 0};
         }
@@ -106,21 +102,19 @@ export default function NeuralNetwork() {
             const particleData = particlesData[i];
 
             if (i !== 0) {
+                const index = i * 3;
                 v.set(
-                    particlePositions[i * 3],
-                    particlePositions[i * 3 + 1],
-                    particlePositions[i * 3 + 2]
-                )
-                    .add(particleData.velocity);
-                particlePositions[i * 3] = v.x;
-                particlePositions[i * 3 + 1] = v.y;
-                particlePositions[i * 3 + 2] = v.z;
+                    particlePositions[index],
+                    particlePositions[index + 1],
+                    particlePositions[index + 2]
+                ).add(particleData.velocity);
 
-                if (particlePositions[i * 3 + 1] < -r || particlePositions[i * 3 + 1] > r)
-                    particleData.velocity.y = -particleData.velocity.y;
+                particlePositions[index] = v.x;
+                particlePositions[index + 1] = v.y;
+                particlePositions[index + 2] = v.z;
 
-                if (particlePositions[i * 3] < -r || particlePositions[i * 3] > r)
-                    particleData.velocity.x = -particleData.velocity.x;
+                if (v.y < -r || v.y > r) particleData.velocity.y = -particleData.velocity.y;
+                if (v.x < -r || v.x > r) particleData.velocity.x = -particleData.velocity.x;
             }
 
             if (particleData.numConnections >= maxConnections) continue;
@@ -129,24 +123,25 @@ export default function NeuralNetwork() {
                 const particleDataB = particlesData[j];
                 if (particleDataB.numConnections >= maxConnections) continue;
 
-                const dx = particlePositions[i * 3] - particlePositions[j * 3];
-                const dy = particlePositions[i * 3 + 1] - particlePositions[j * 3 + 1];
-                const dz = particlePositions[i * 3 + 2] - particlePositions[j * 3 + 2];
+                const indexJ = j * 3;
+                const dx = particlePositions[i * 3] - particlePositions[indexJ];
+                const dy = particlePositions[i * 3 + 1] - particlePositions[indexJ + 1];
+                const dz = particlePositions[i * 3 + 2] - particlePositions[indexJ + 2];
                 const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
                 if (dist < maxDistance) {
                     particleData.numConnections++;
                     particleDataB.numConnections++;
 
-                    const alpha = Math.max(0.1, 1.0 - dist / maxDistance); // Ensure minimum alpha value
+                    const alpha = Math.max(0.1, 1.0 - dist / maxDistance);
 
                     positions[vertexPos++] = particlePositions[i * 3];
                     positions[vertexPos++] = particlePositions[i * 3 + 1];
                     positions[vertexPos++] = particlePositions[i * 3 + 2];
 
-                    positions[vertexPos++] = particlePositions[j * 3];
-                    positions[vertexPos++] = particlePositions[j * 3 + 1];
-                    positions[vertexPos++] = particlePositions[j * 3 + 2];
+                    positions[vertexPos++] = particlePositions[indexJ];
+                    positions[vertexPos++] = particlePositions[indexJ + 1];
+                    positions[vertexPos++] = particlePositions[indexJ + 2];
 
                     colors[colorPos++] = alpha;
                     colors[colorPos++] = alpha;
