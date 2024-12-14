@@ -3,9 +3,8 @@ import dynamic from "next/dynamic";
 
 const ShimmerButton = dynamic(() => import("@/components/ui/shimmerButton"), {ssr: false});
 const NeuralNetwork = dynamic(() => import("@/components/neural-network"), {ssr: false});
-import {useInView} from "motion/react";
-import {RefObject, useEffect, useRef, useState} from "react";
-// import {View} from "@react-three/drei";
+import {useInView, useMotionValue, useMotionTemplate, motion} from "motion/react";
+import {RefObject, useEffect, useRef} from "react";
 import useMediaQuery from "@/hooks/customHooks";
 import {Canvas} from "@react-three/fiber";
 
@@ -13,30 +12,26 @@ export default function Hero() {
     const isDesktop = useMediaQuery('(min-width: 768px)');
     const ref = useRef<HTMLDivElement>(null);
     const isInView = useInView(ref as RefObject<Element>, {once: true});
-    const [mousePosition, setMousePosition] = useState<{ x: number, y: number }>({
-        x: 0,
-        y: 0,
-    });
-    // Add event listener to the document to get current mouse position
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
     useEffect(() => {
-        setMousePosition({
-            x: window.innerWidth,
-            y: window.innerHeight,
-        })
         if (!isDesktop) {
+            mouseY.set(window.innerHeight);
+            mouseX.set(window.innerWidth);
             return;
         }
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({
-                x: e.clientX,
-                y: e.clientY,
-            });
+        mouseY.set(window.innerHeight / 2);
+        mouseX.set(window.innerWidth / 2);
+        const handleMouseMove = (event: MouseEvent) => {
+            mouseX.set(event.clientX);
+            mouseY.set(event.clientY);
         };
-        document.addEventListener("mousemove", handleMouseMove);
-        return () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-        };
-    }, [isDesktop]);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, [mouseX, mouseY, isDesktop]);
+
+    const gradient = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0) 0%, rgba(0,0,0,1) ${isDesktop ? 30 : 50}%)`;
 
     return (
         <div id="home" ref={ref} className="relative h-screen p-4 grid place-content-center">
@@ -50,12 +45,9 @@ export default function Hero() {
                 camera={{position: [0, 0, 10]}} gl={{alpha: false}}>
                 <NeuralNetwork/>
             </Canvas>
-            {/*<View visible={isDesktop} className="h-screen w-full absolute top-0 left-0 -z-20 overflow-hidden">*/}
-            {/*    <NeuralNetwork/>*/}
-            {/*</View>*/}
-            <div
-                style={{'background': `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,255,255,0) 0%, rgba(0,0,0,1) ${isDesktop ? 30 : 50}%)`}}
-                className="w-full h-screen absolute top-0 left-0 -z-10 pointer-events-none"></div>
+            <motion.div
+                style={{background: gradient}}
+                className="w-full h-screen absolute top-0 left-0 -z-10 pointer-events-none"></motion.div>
             <div
                 className={`flex flex-col justify-center items-center ${isInView ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'} transition-all duration-300`}>
                 <div className="flex flex-col justify-end items-end w-fit mb-4 select-none">
