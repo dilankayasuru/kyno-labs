@@ -16,15 +16,15 @@ const TextArea = dynamic(() => import("@/components/inputField").then(mod => mod
 export default function ContactUs() {
     return (
         <div className="md:max-w-screen-xl md:mx-auto md:my-11">
-            <motion.div
-                initial="offscreen"
-                whileInView="onscreen"
-                viewport={{once: true, amount: 0.8}}
-                variants={variants}
+            <div
                 className="px-6 py-8 text-white" id="contact">
-                <div>
+                <motion.div
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{once: true, amount: 0.8}}
+                    variants={variants}>
                     <p className="gradient-title">Contact us</p>
-                </div>
+                </motion.div>
                 <div className="md:flex md:gap-8 md:mt-8">
                     <ContactForm/>
                     <motion.div
@@ -40,7 +40,7 @@ export default function ContactUs() {
                         <ContactCard/>
                     </motion.div>
                 </div>
-            </motion.div>
+            </div>
         </div>
 
     )
@@ -138,7 +138,8 @@ function ContactCard() {
 function ContactCardItem(props: { title: string, value: string, icon: React.ReactNode }) {
     const {title, value, icon} = props;
     return (
-        <div className={`flex items-center gap-2 ${title === "Email" ? 'col-span-2 md:col-span-1 justify-center md:justify-normal' : ''}`}>
+        <div
+            className={`flex items-center gap-2 ${title === "Email" ? 'col-span-2 md:col-span-1 justify-center md:justify-normal' : ''}`}>
             <div>
                 {icon}
             </div>
