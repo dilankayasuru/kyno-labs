@@ -15,6 +15,7 @@ export default function WhoWeAre() {
 
     const isDesktop = useMediaQuery('(min-width: 768px)');
     const [position, setPosition] = useState({x: -10, y: 8.5});
+    const hidden = true;
 
     const container = useRef(null);
     const {scrollYProgress} = useScroll({
@@ -62,8 +63,10 @@ export default function WhoWeAre() {
                     growth and improve efficiency for businesses.
                 </motion.p>
             </div>
-            <div className="mt-8 grid gap-4 place-content-center md:grid-cols-8 md:max-w-screen-lg md:mx-auto md:my-0">
-                <div className="md:col-start-1 md:col-end-4">
+            <div
+                className="mt-8 grid gap-4 place-content-center md:grid-cols-8 md:max-w-screen-lg md:mx-auto md:my-0 md:min-h-96">
+                <div
+                    className={`${hidden ? 'md:row-end-3 md:row-start-1 md:col-start-2 md:col-end-5' : 'md:col-start-1 md:col-end-4'}`}>
                     <MetallicCard
                         className="md:bg-black md:bg-opacity-25 md:h-full md:backdrop-blur-lg p-4 max-w-xs min-h-40 grid place-content-center md:max-w-none md:bg-transparent">
                         <div className="text-center">
@@ -72,18 +75,21 @@ export default function WhoWeAre() {
                         </div>
                     </MetallicCard>
                 </div>
-                <div className="md:col-start-1 md:backdrop-blur-lg md:col-end-4 md:row-start-2 md:row-end-3">
-                    <MetallicCard
-                        className="md:bg-black md:bg-opacity-25 md:max-w-none md:bg-transparent p-4 max-w-xs min-h-40 grid place-content-center">
-                        <div className="text-center">
-                            <div className="grid place-content-center">
-                                <Image src="/map.png" alt="map" height={160} width={160} className="h-40 w-auto"/>
+                {!hidden &&
+                    <div className="md:col-start-1 md:backdrop-blur-lg md:col-end-4 md:row-start-2 md:row-end-3">
+                        <MetallicCard
+                            className="md:bg-black md:bg-opacity-25 md:max-w-none md:bg-transparent p-4 max-w-xs min-h-40 grid place-content-center">
+                            <div className="text-center">
+                                <div className="grid place-content-center">
+                                    <Image src="/map.png" alt="map" height={160} width={160} className="h-40 w-auto"/>
+                                </div>
+                                <p className="text-secondary-text">Serving Clients Worldwide</p>
                             </div>
-                            <p className="text-secondary-text">Serving Clients Worldwide</p>
-                        </div>
-                    </MetallicCard>
-                </div>
-                <div className="md:col-start-4 md:col-end-7 md:row-start-1 md:row-end-3">
+                        </MetallicCard>
+                    </div>
+                }
+                <div
+                    className={`${hidden ? 'md:col-start-5 md:col-end-8' : 'md:col-start-4 md:col-end-7'} md:row-start-1 md:row-end-3`}>
                     <MetallicCard
                         className="md:bg-black md:bg-opacity-25 md:backdrop-blur-lg md:h-full md:max-w-none md:bg-transparent p-4 max-w-xs min-h-40 grid place-content-center">
                         <div className="text-center">
@@ -98,31 +104,37 @@ export default function WhoWeAre() {
                         </div>
                     </MetallicCard>
                 </div>
-                <div className="md:bg-black md:bg-opacity-25 md:col-start-7 md:col-end-9 md:row-start-1 md:row-end-2">
-                    <MetallicCard
-                        className=" md:backdrop-blur-lg md:max-w-none md:bg-transparent p-4 max-w-xs min-h-40 grid place-content-center">
-                        <div className="text-center">
-                            <div className="grid place-content-center">
-                                <Image src="/placeholder-company1.png" alt="company 1 logo" height={160} width={160}
-                                       className="h-40 w-auto"/>
-                            </div>
-                            <p className="text-secondary-text">Trusted by Company 1</p>
+                {!hidden &&
+                    <>
+                        <div
+                            className="md:bg-black md:bg-opacity-25 md:col-start-7 md:col-end-9 md:row-start-1 md:row-end-2">
+                            <MetallicCard
+                                className=" md:backdrop-blur-lg md:max-w-none md:bg-transparent p-4 max-w-xs min-h-40 grid place-content-center">
+                                <div className="text-center">
+                                    <div className="grid place-content-center">
+                                        <Image src="/placeholder-company1.png" alt="company 1 logo" height={160}
+                                               width={160}
+                                               className="h-40 w-auto"/>
+                                    </div>
+                                    <p className="text-secondary-text">Trusted by Company 1</p>
+                                </div>
+                            </MetallicCard>
                         </div>
-                    </MetallicCard>
-                </div>
-                <div className="md:col-start-7 md:col-end-9 md:row-start-2 md:row-end-3">
-                    <MetallicCard
-                        className="md:bg-black md:bg-opacity-25 md:backdrop-blur-lg md:max-w-none md:bg-transparent p-4 max-w-xs min-h-40 grid place-content-center">
-                        <div className="text-center">
-                            <div className="grid place-content-center">
-                                <Image src="/placeholder-company2.png" alt="company 2 logo" height={160} width={160}
-                                       className="h-40 w-auto"/>
-                            </div>
-                            <p className="text-secondary-text">Trusted by Company 2</p>
+                        <div className="md:col-start-7 md:col-end-9 md:row-start-2 md:row-end-3">
+                            <MetallicCard
+                                className="md:bg-black md:bg-opacity-25 md:backdrop-blur-lg md:max-w-none md:bg-transparent p-4 max-w-xs min-h-40 grid place-content-center">
+                                <div className="text-center">
+                                    <div className="grid place-content-center">
+                                        <Image src="/placeholder-company2.png" alt="company 2 logo" height={160}
+                                               width={160}
+                                               className="h-40 w-auto"/>
+                                    </div>
+                                    <p className="text-secondary-text">Trusted by Company 2</p>
+                                </div>
+                            </MetallicCard>
                         </div>
-                    </MetallicCard>
-                </div>
-
+                    </>
+                }
             </div>
         </div>
     );
