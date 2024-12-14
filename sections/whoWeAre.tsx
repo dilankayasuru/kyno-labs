@@ -1,8 +1,7 @@
 "use client"
 import dynamic from "next/dynamic";
-import {motion, useScroll} from "motion/react";
+import {motion} from "motion/react";
 import {View} from "@react-three/drei";
-import {useEffect, useRef, useState} from "react";
 
 const Cube = dynamic(() => import("@/components/cube"), {ssr: false});
 import variants from "@/components/animation/variants";
@@ -14,28 +13,12 @@ const MetallicCard = dynamic(() => import("@/components/metallicCard"), {ssr: fa
 export default function WhoWeAre() {
 
     const isDesktop = useMediaQuery('(min-width: 768px)');
-    const [position, setPosition] = useState({x: -10, y: 8.5});
-
-    const container = useRef(null);
-    const {scrollYProgress} = useScroll({
-        target: container,
-        offset: ["start end", "end start"]
-    });
-
-    useEffect(() => {
-        if (!isDesktop) return;
-        scrollYProgress.onChange(value => setPosition({
-            x: 8 * Math.pow(value, 2) + 16 * value - 10,
-            y: 11 * Math.pow(value, 2) - 30.5 * value + 8.5,
-        }))
-    }, [scrollYProgress, isDesktop]);
 
     return (
         <div
-            ref={container}
             className="md:relative px-6 py-9 text-white" id="about">
             <View visible={isDesktop} className="w-full h-full absolute top-0 left-0">
-                <Cube position={position}/>
+                <Cube/>
             </View>
             <div className="md:text-center md:grid md:place-content-center">
                 <motion.div
