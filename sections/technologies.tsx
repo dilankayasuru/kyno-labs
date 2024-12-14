@@ -16,7 +16,7 @@ export default function Technologies() {
 
     return (
         <div className="md:flex md:justify-between md:py-9 px-6 py-8 text-white md:max-w-screen-xl md:mx-auto md:my-0" id="technologies">
-            <div className="md:w-full">
+            <div className="md:w-full md:pt-9">
                 <motion.div
                     initial="offscreen"
                     whileInView="onscreen"

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/navbar";
 
 export const metadata: Metadata = {
   title: "Kyno Labs",
@@ -26,7 +25,6 @@ export default function RootLayout({
       <body
         className={`${poppins.className} bg-black`}
       >
-        <Navbar/>
         {children}
       </body>
     </html>

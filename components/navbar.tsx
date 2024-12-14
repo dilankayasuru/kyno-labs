@@ -1,37 +1,44 @@
 "use client"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MenuClose from "./icons/menuClose";
 import MenuOpen from "./icons/menuOpen";
-import {motion, useMotionValueEvent, useScroll} from "motion/react";
 import useMediaQuery from "@/hooks/customHooks";
 
 export default function Navbar() {
-
     const isDesktop = useMediaQuery('(min-width: 768px)');
-
     const [menuOpened, setMenuOpened] = useState(false);
-    const {scrollY} = useScroll();
-    const [hidden, setHidden] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [visible, setVisible] = useState(true);
 
-    const [activeLink, setActiveLink] = useState<string>("");
+    useEffect(() => {
+        let throttleTimeout: NodeJS.Timeout | null = null;
+        const handleScroll = () => {
+            if (!throttleTimeout) {
+                throttleTimeout = setTimeout(() => {
+                    if (scrollPosition > window.scrollY) {
+                        setVisible(true);
+                    } else {
+                        setVisible(false);
+                    }
+                    setScrollPosition(window.scrollY);
+                    throttleTimeout = null;
+                }, 200)
+            }
+        }
 
-    useMotionValueEvent(scrollY, "change", (latestValue) => {
-        const prevValue = scrollY.getPrevious() || 0;
-        setHidden(latestValue > prevValue && latestValue > 150 && !menuOpened);
-    })
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (throttleTimeout) clearTimeout(throttleTimeout);
+        }
+    }, [scrollPosition]);
 
     return (
         <div>
-            <motion.div
-                variants={{
-                    visible: {y: 0},
-                    hidden: {y: "-150%"}
-                }}
-                animate={hidden ? "hidden" : "visible"}
-                transition={{duration: 0.3, ease: "easeInOut"}}
-                className="z-50 fixed top-6 text-white w-full">
+            <div
+                className={`z-50 transition-all duration-300 fixed top-6 text-white w-full ${visible ? 'top-6' : 'top-[-150px]'}`}>
                 <div
                     className="md:max-w-screen-md md:mx-0 md:left-1/2 md:-translate-x-1/2 rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur bg-black bg-opacity-50 transparent-border">
                     <div className="overflow-hidden md:w-full">
@@ -50,32 +57,27 @@ export default function Navbar() {
                         <>
                             <ul className="flex justify-between gap-4 w-full">
                                 <li><Link
-                                    onClick={() => setActiveLink('home')}
-                                    className={`nav-link ${activeLink === 'home' ? 'text-primary-yellow' : ''}`}
+                                    className={`nav-link`}
                                     href="#home">
                                     Home
                                 </Link></li>
                                 <li><Link
-                                    onClick={() => setActiveLink('service')}
-                                    className={`nav-link ${activeLink === 'service' ? 'text-primary-yellow' : ''}}`}
+                                    className={`nav-link`}
                                     href="#services">
                                     Services
                                 </Link></li>
                                 <li><Link
-                                    onClick={() => setActiveLink('projects')}
-                                    className={`nav-link ${activeLink === 'projects' ? 'text-primary-yellow' : ''}`}
+                                    className={`nav-link`}
                                     href="#projects">
                                     Projects
                                 </Link></li>
                                 <li><Link
-                                    onClick={() => setActiveLink('technologies')}
-                                    className={`nav-link ${activeLink === 'technologies' ? 'text-primary-yellow' : ''}`}
+                                    className={`nav-link`}
                                     href="#technologies">
                                     Tech
                                 </Link></li>
                                 <li><Link
-                                    onClick={() => setActiveLink('testimonials')}
-                                    className={`nav-link ${activeLink === 'testimonials' ? 'text-primary-yellow' : ''}`}
+                                    className={`nav-link`}
                                     href="#testimonials">
                                     Testimonials
                                 </Link></li>
@@ -112,7 +114,7 @@ export default function Navbar() {
                         </ul>
                     </div>
                 }
-            </motion.div>
+            </div>
             {!isDesktop &&
                 < div
                     className={`${menuOpened ? 'h-screen w-full top-0 backdrop-blur bg-black bg-opacity-70' : 'w-[calc(100vw-32px)] top-6 h-full invisible'} fixed z-40 left-1/2 -translate-x-1/2 transition-all duration-300`}>

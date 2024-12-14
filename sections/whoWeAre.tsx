@@ -24,10 +24,13 @@ export default function WhoWeAre() {
 
     useEffect(() => {
         if (!isDesktop) return;
-        scrollYProgress.onChange(value => setPosition({
-            x: 8 * Math.pow(value, 2) + 16 * value - 10,
-            y: 11 * Math.pow(value, 2) - 30.5 * value + 8.5,
-        }))
+        const unsub = scrollYProgress.on("change", (value) => {
+            setPosition({
+                x: 8 * Math.pow(value, 2) + 16 * value - 10,
+                y: 11 * Math.pow(value, 2) - 30.5 * value + 8.5,
+            })
+        })
+        return () => unsub();
     }, [scrollYProgress, isDesktop]);
 
     return (

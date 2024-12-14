@@ -1,10 +1,13 @@
 "use client"
 import {Canvas} from "@react-three/fiber";
-import {OrthographicCamera, View} from "@react-three/drei";
+import {View} from "@react-three/drei";
 import {Suspense} from "react";
+import useMediaQuery from "@/hooks/customHooks";
 
 export default function CanvasView() {
-    return (
+    const isDesktop = useMediaQuery('(min-width: 768px)');
+
+    return (isDesktop &&
         <Canvas
             style={{
                 position: "fixed",
@@ -15,14 +18,13 @@ export default function CanvasView() {
                 pointerEvents: "none",
                 zIndex: -10,
             }}
-            shadows
             dpr={[1, 1.5]}
-            gl={{
-                powerPreference: "high-performance",
-                antialias: true
+            orthographic={true}
+            camera={{
+                position: [0, 0, 5],
+                zoom: 60,
             }}
         >
-            <OrthographicCamera makeDefault position={[0, 0, 5]} zoom={60} />
             <Suspense fallback={null}>
                 <View.Port/>
             </Suspense>
