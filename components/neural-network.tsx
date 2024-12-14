@@ -49,17 +49,14 @@ export default function NeuralNetwork() {
     const {size, viewport} = useThree();
 
     useEffect(() => {
-        if (!isDesktop) {
-            setMousePosition(new Vector3(viewport.width, viewport.height, 0))
-            return;
-        }
-        const handleMouseMove = (event: MouseEvent) => {
-            const x = (event.clientX / size.width) * 2 - 1;
-            const y = -(event.clientY / size.height) * 2 + 1;
+        const handleMove = (event: MouseEvent | TouchEvent) => {
+            const x = (event instanceof MouseEvent ? event.clientX : event.touches[0].clientX) / size.width * 2 - 1;
+            const y = -(event instanceof MouseEvent ? event.clientY : event.touches[0].clientY) / size.height * 2 + 1;
             setMousePosition(new Vector3(x * viewport.width / 2, y * viewport.height / 2, 0));
         };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+        const eventType = isDesktop ? 'mousemove' : 'touchmove';
+        window.addEventListener(eventType, handleMove);
+        return () => window.removeEventListener(eventType, handleMove);
     }, [size, viewport, isDesktop]);
 
     // Effect to initialize particle positions and velocities

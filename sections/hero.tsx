@@ -16,19 +16,30 @@ export default function Hero() {
     const mouseY = useMotionValue(0);
 
     useEffect(() => {
+        const handleMove = (event: MouseEvent | TouchEvent) => {
+            if (event instanceof MouseEvent) {
+                mouseX.set(event.clientX);
+                mouseY.set(event.clientY);
+            } else {
+                mouseX.set(event.touches[0].clientX);
+                mouseY.set(event.touches[0].clientY);
+            }
+        };
+
         if (!isDesktop) {
             mouseY.set(window.innerHeight);
             mouseX.set(window.innerWidth);
-            return;
+            window.addEventListener('touchmove', handleMove);
+        } else {
+            mouseY.set(window.innerHeight / 2);
+            mouseX.set(window.innerWidth / 2);
+            window.addEventListener('mousemove', handleMove);
         }
-        mouseY.set(window.innerHeight / 2);
-        mouseX.set(window.innerWidth / 2);
-        const handleMouseMove = (event: MouseEvent) => {
-            mouseX.set(event.clientX);
-            mouseY.set(event.clientY);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMove);
+            window.removeEventListener('touchmove', handleMove);
         };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [mouseX, mouseY, isDesktop]);
 
     const gradient = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(255,255,255,0) 0%, rgba(0,0,0,1) ${isDesktop ? 30 : 50}%)`;
