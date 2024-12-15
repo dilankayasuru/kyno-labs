@@ -1,8 +1,7 @@
 "use client"
 import dynamic from "next/dynamic";
-import {motion, useScroll} from "motion/react";
-import {View} from "@react-three/drei";
-import {useEffect, useRef, useState} from "react";
+import {motion} from "motion/react";
+import {Preload, View} from "@react-three/drei";
 
 const Cube = dynamic(() => import("@/components/cube"), {ssr: false});
 import variants from "@/components/animation/variants";
@@ -14,37 +13,19 @@ const MetallicCard = dynamic(() => import("@/components/metallicCard"), {ssr: fa
 export default function WhoWeAre() {
 
     const isDesktop = useMediaQuery('(min-width: 768px)');
-    const [position, setPosition] = useState({x: -10, y: 8.5});
     const hidden = true;
 
-    const container = useRef(null);
-    const {scrollYProgress} = useScroll({
-        target: container,
-        offset: ["start end", "end start"]
-    });
-
-    useEffect(() => {
-        if (!isDesktop) return;
-        const unsub = scrollYProgress.on("change", (value) => {
-            setPosition({
-                x: 8 * Math.pow(value, 2) + 16 * value - 10,
-                y: 11 * Math.pow(value, 2) - 30.5 * value + 8.5,
-            })
-        })
-        return () => unsub();
-    }, [scrollYProgress, isDesktop]);
-
     return (
-        <div
-            ref={container}
-            className="md:relative px-6 py-9 text-white" id="about">
+        <div className="text-white py-9 md:relative" id="about">
             {isDesktop &&
-                <View className="w-full h-full absolute top-0 left-0">
-                    <Cube position={position}/>
+                <View visible={isDesktop} className="md:w-full md:h-full md:absolute">
+                    <Cube position={{x: 0, y: -3.5}}/>
+                    <Preload all/>
                 </View>
             }
-            <div className="md:text-center md:grid md:place-content-center">
+            <div className="md:text-center md:grid md:place-content-center px-6">
                 <motion.div
+                    style={{willChange: "transform, scale, opacity"}}
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{once: true, amount: 0.8}}
@@ -64,7 +45,7 @@ export default function WhoWeAre() {
                 </motion.p>
             </div>
             <div
-                className="mt-8 grid gap-4 place-content-center md:grid-cols-8 md:max-w-screen-lg md:mx-auto md:my-0 md:min-h-96">
+                className="grid gap-4 place-content-center md:grid-cols-8 md:max-w-screen-lg md:mx-auto md:my-0 md:min-h-96">
                 <div
                     className={`${hidden ? 'md:row-end-3 md:row-start-1 md:col-start-2 md:col-end-5' : 'md:col-start-1 md:col-end-4'}`}>
                     <MetallicCard

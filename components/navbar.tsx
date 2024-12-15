@@ -13,25 +13,17 @@ export default function Navbar() {
     const [visible, setVisible] = useState(true);
 
     useEffect(() => {
-        let throttleTimeout: NodeJS.Timeout | null = null;
         const handleScroll = () => {
-            if (!throttleTimeout) {
-                throttleTimeout = setTimeout(() => {
-                    if (scrollPosition > window.scrollY) {
-                        setVisible(true);
-                    } else {
-                        setVisible(false);
-                    }
-                    setScrollPosition(window.scrollY);
-                    throttleTimeout = null;
-                }, 200)
+            if (scrollPosition < window.scrollY && !menuOpened && window.scrollY > 150) {
+                setVisible(false);
+            } else {
+                setVisible(true);
             }
+            setScrollPosition(window.scrollY);
         }
-
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            if (throttleTimeout) clearTimeout(throttleTimeout);
         }
     }, [scrollPosition]);
 
@@ -40,7 +32,7 @@ export default function Navbar() {
             <div
                 className={`z-50 transition-all duration-300 fixed top-6 text-white w-full ${visible ? 'top-6' : 'top-[-150px]'}`}>
                 <div
-                    className="md:max-w-screen-md md:mx-0 md:left-1/2 md:-translate-x-1/2 rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur bg-black bg-opacity-50 transparent-border">
+                    className="md:max-w-screen-md md:mx-0 md:left-1/2 md:-translate-x-1/2 rounded-full mx-4 p-1 flex justify-between items-center backdrop-blur bg-black bg-opacity-50 gradient-border">
                     <div className="overflow-hidden md:w-full">
                         <Image src="/logo.jpg" alt="logo" width={44} height={44} className="h-11 w-11 rounded-full"/>
                     </div>
@@ -69,12 +61,12 @@ export default function Navbar() {
                                 <li><Link
                                     className={`nav-link`}
                                     href="#projects">
-                                    Projects
+                                    Portfolio
                                 </Link></li>
                                 <li><Link
                                     className={`nav-link`}
                                     href="#technologies">
-                                    Tech
+                                    Technologies
                                 </Link></li>
                                 <li><Link
                                     className={`nav-link`}
@@ -93,19 +85,21 @@ export default function Navbar() {
                 {!isDesktop &&
                     <div className={`${menuOpened ? 'block' : 'hidden invisible'} px-4`}>
                         <ul className="mt-8">
-                            <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Home" link="#home"/>
+                            <li onClick={() => setMenuOpened(!menuOpened)}>
+                                <MobileNavItem name="Home" link="#home"/>
                             </li>
-                            <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Services"
-                                                                                          link="#services"/>
+                            <li onClick={() => setMenuOpened(!menuOpened)}>
+                                <MobileNavItem name="Our services" link="#services"/>
                             </li>
-                            <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Projects"
-                                                                                          link="#projects"/>
+                            <li onClick={() => setMenuOpened(!menuOpened)}>
+                                <MobileNavItem name="Our portfolio" link="#projects"/>
                             </li>
-                            <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Tech"
-                                                                                          link="#technologies"/>
+                            <li onClick={() => setMenuOpened(!menuOpened)}>
+                                <MobileNavItem name="Technologies" link="#technologies"/>
                             </li>
-                            <li onClick={() => setMenuOpened(!menuOpened)}><MobileNavItem name="Testimonials"
-                                                                                          link="#testimonials"/></li>
+                            <li onClick={() => setMenuOpened(!menuOpened)}>
+                                <MobileNavItem name="Testimonials" link="#testimonials"/>
+                            </li>
                             <li onClick={() => setMenuOpened(!menuOpened)}>
                                 <Link href="#contact" className="p-6 mt-2">
                                     <ContactUsBtn/>

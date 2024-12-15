@@ -12,31 +12,6 @@ body {
     }
 }
 
-.transparent-border {
-    position: relative;
-}
-
-.transparent-border:before {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-    inset: 0px;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(
-            to bottom right,
-            #dddddd 0%,
-            #333333 33%,
-            #555555 62%,
-            #333333 100%
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    transition: --c1 300ms ease, --c2 300ms ease, --c3 300ms ease;
-}
-
 .gradient-title {
     background: linear-gradient(to right, white, #0000ff);
     padding-bottom: 0.25rem;

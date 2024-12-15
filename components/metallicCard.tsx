@@ -7,6 +7,7 @@ const MetallicCard = memo(function MetallicCard(props: { children: React.ReactNo
     const {children, className} = props;
     return (
         <motion.div
+            style={{willChange: "transform, scale, opacity"}}
             initial="offscreen"
             whileInView="onscreen"
             viewport={{once: true, amount: 0.8}}

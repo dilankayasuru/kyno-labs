@@ -12,8 +12,9 @@ const config: Config = {
             animation: {
                 "shimmer-slide":
                     "shimmer-slide var(--speed) ease-in-out infinite alternate",
-                "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
-                "appear": "appear linear"
+                "spin-around": "spin-around calc(var(--speed) * 2) infinite",
+                "floating": "floating 5s infinite ease-in-out",
+                "appear": "appear 300ms ease-in-out"
             },
             colors: {
                 background: "var(--background)",
@@ -43,6 +44,22 @@ const config: Config = {
                         transform: "translate(calc(100cqw - 100%), 0)",
                     },
                 },
+                "floating": {
+                    '0% 100%': {transform: "translateY(0)"},
+                    '50%': {transform: "translateY(-10px)"}
+                },
+                "appear": {
+                    from: {
+                        opacity: "0%",
+                        transform: "translateY(50px)",
+                        scale: "0.95",
+                    },
+                    to: {
+                        opacity: "100%",
+                        transform: "translateY(0)",
+                        scale: "1",
+                    }
+                }
             },
         },
     },
