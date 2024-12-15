@@ -2,13 +2,13 @@
 import dynamic from "next/dynamic";
 
 const ShimmerButton = dynamic(() => import("@/components/ui/shimmerButton"), {ssr: false});
-const NeuralNetwork = dynamic(() => import("@/components/neural-network"), {ssr: false});
 const ConsultationForm = dynamic(() => import("@/components/consultationForm"), {ssr: false});
 import {useInView, useMotionValue, useMotionTemplate, motion} from "motion/react";
 import {RefObject, useEffect, useRef, useState} from "react";
 import useMediaQuery from "@/hooks/customHooks";
 import {Canvas} from "@react-three/fiber";
 import {Preload} from "@react-three/drei";
+import NeuralNetwork from "@/components/neural-network";
 
 export default function Hero() {
     const isDesktop = useMediaQuery('(min-width: 768px)');

@@ -2,8 +2,7 @@
 import dynamic from "next/dynamic";
 import {motion} from "motion/react";
 import {Preload, View} from "@react-three/drei";
-
-const Cube = dynamic(() => import("@/components/cube"), {ssr: false});
+import Cube from "@/components/cube";
 import variants from "@/components/animation/variants";
 import Image from "next/image";
 import useMediaQuery from "@/hooks/customHooks";
@@ -34,6 +33,7 @@ export default function WhoWeAre() {
                     <p className="mt-4 text-lg md:mt-8 md:text-xl">Welcome to Kyno Labs: Your vision, Our innovation</p>
                 </motion.div>
                 <motion.p
+                    style={{willChange: "transform, scale, opacity"}}
                     initial="offscreen"
                     whileInView="onscreen"
                     viewport={{once: true, amount: 0.8}}
