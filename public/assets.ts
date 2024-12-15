@@ -76,33 +76,6 @@ export const projects = [
             "/mockup-3.jpg"
         ]
     },
-    {
-        "title": "ICD Code prediction from Diagnosis ZWSP and Clinical Text using NLP",
-        "description": "Predicted student grades using machine learning models and provided explanations for the predictions using SHAP and LIME to support educators in understanding key factors and improving outcomes.",
-        "images": [
-            "/mockup-1.jpg",
-            "/mockup-3.jpg",
-            "/mockup-2.jpg"
-        ]
-    },
-    {
-        "title": "ICD Code prediction from Diagnosis ZWSP and Clinical Text using NLP",
-        "description": "Predicted student grades using machine learning models and provided explanations for the predictions using SHAP and LIME to support educators in understanding key factors and improving outcomes.",
-        "images": [
-            "/mockup-1.jpg",
-            "/mockup-3.jpg",
-            "/mockup-2.jpg"
-        ]
-    },
-    {
-        "title": "ICD Code prediction from Diagnosis ZWSP and Clinical Text using NLP",
-        "description": "Predicted student grades using machine learning models and provided explanations for the predictions using SHAP and LIME to support educators in understanding key factors and improving outcomes.",
-        "images": [
-            "/mockup-1.jpg",
-            "/mockup-3.jpg",
-            "/mockup-2.jpg"
-        ]
-    }
 ]
 
 export const technologies = {
@@ -180,30 +153,35 @@ export const contacts = [
         title: "Linkedin",
         value: "@kyno-labs",
         icon: "Linkedin",
+        link: "https://www.linkedin.com/company/kyno-labs/",
+        type: ""
     },
     {
         title: "Instargram",
         value: "@kynolabs",
         icon: "Instargram",
+        link: "https://www.instagram.com/kynolabs/",
+        type: ""
     },
     {
         title: "Facebook",
         value: "@Kyno Labs",
         icon: "Facebook",
-    },
-    {
-        title: "Surith",
-        value: "+94 73 333 3333",
-        icon: "Phone",
+        link: "https://www.facebook.com/p/Kyno-Labs-61560382972353/",
+        type: ""
     },
     {
         title: "Ranuja",
-        value: "+94 79 999 9999",
+        value: "+94 72 532 6372",
         icon: "Phone",
+        link: "+94725326372",
+        type: "tel:"
     },
     {
         title: "Email",
-        value: "sample@gmail.com",
+        value: "info@kynolabs.com",
         icon: "Email",
+        link: "info@kynolabs.com",
+        type: "mailto:"
     },
 ]

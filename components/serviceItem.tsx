@@ -16,7 +16,7 @@ const ServiceItem = memo(function ServiceItem({ title, description }: ServiceIte
 
     return (
         <div className="z-10 relative py-4" onClick={toggleOpen}>
-            <div className="flex justify-between items-center relative z-10 gap-4">
+            <div className="flex justify-between items-center relative z-10 gap-4 cursor-pointer">
                 <p className="text-lg">{title}</p>
                 <div
                     className={`transition-all duration-300 h-7 w-7 grid place-content-center rounded-full bg-white ${isOpen ? 'rotate-45' : '-rotate-45'}`}>
@@ -29,7 +29,7 @@ const ServiceItem = memo(function ServiceItem({ title, description }: ServiceIte
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.15 }}
                     layout="position"
-                    className="text-secondary-text pt-4">
+                    className="text-secondary-text pt-4 cursor-pointer">
                     <ul>
                         {description.map((item, id) => (
                             <li key={id} className="mb-1">{item}</li>

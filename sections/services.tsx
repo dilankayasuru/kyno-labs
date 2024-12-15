@@ -3,16 +3,13 @@ import dynamic from "next/dynamic";
 import {motion} from "motion/react";
 import {services} from "@/public/assets";
 import variants from "@/components/animation/variants";
-
-const Cube = dynamic(() => import("@/components/cube"), {ssr: false});
 const ServiceItem = dynamic(() => import("@/components/serviceItem"), {ssr: false});
-import {View} from "@react-three/drei";
-import useMediaQuery from "@/hooks/customHooks";
 import {useRef} from "react";
+import Image from "next/image";
 
 export default function Services() {
 
-    const isDesktop = useMediaQuery('(min-width: 768px)');
+    // const isDesktop = useMediaQuery('(min-width: 768px)');
     const ref = useRef(null);
 
 
@@ -29,9 +26,14 @@ export default function Services() {
                 <p className="gradient-title">Our services</p>
             </motion.div>
             <div className="md:flex md:gap-4 md:justify-center md:w-full md:h-full md:relative">
-                <View visible={isDesktop} className="md:w-full md:min-w-96 md:h-[512px] md:sticky md:top-0">
-                    <Cube position={{x: 0, y: -1.8}}/>
-                </View>
+                <motion.div
+                    initial="offscreen"
+                    whileInView="onscreen"
+                    viewport={{once: true, amount: 0.8}}
+                    variants={variants}
+                    className="invisible hidden md:block md:visible h-full w-full sticky top-0">
+                    <Image src="/services.png" width={512} height={512} alt="our services image" className="pointer-events-none animate-floating"/>
+                </motion.div>
                 <div className="md:flex md:justify-center md:items-center md:w-full">
                     <motion.div
                         initial="offscreen"

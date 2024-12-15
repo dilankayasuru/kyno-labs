@@ -2,14 +2,14 @@
 import dynamic from "next/dynamic";
 import {motion} from "motion/react";
 import variants from "@/components/animation/variants";
-import {FormEvent, useState} from "react";
+import {FormEvent, ReactNode, useState} from "react";
 import Email from "@/components/icons/email";
 import Linkedin from "@/components/icons/linkedin";
 import Instargram from "@/components/icons/instargram";
 import Facebook from "@/components/icons/facebook";
 import Phone from "@/components/icons/phone";
 import {contacts} from "@/public/assets";
-
+import Link from "next/link";
 const InputField = dynamic(() => import("@/components/inputField").then(mod => mod.InputField), {ssr: false});
 const TextArea = dynamic(() => import("@/components/inputField").then(mod => mod.TextArea), {ssr: false});
 
@@ -71,6 +71,10 @@ function ContactForm() {
             return;
         }
         formData.append("access_key", apiKey);
+        formData.append("subject", "New message from KynoLabs contact form");
+        formData.append("from_name", "KynoLabs Contact form");
+        formData.append("Date", new Date().toDateString());
+        formData.append("Time", new Date().toTimeString());
 
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
@@ -129,17 +133,33 @@ function ContactCard() {
         <div
             className="md:max-w-lg md:mt-8 md:p-8 gradient-border bg-[linear-gradient(135deg,_#ffffff21,_#d9d9d900)] bg-black p-4 rounded-3xl grid grid-cols-2 gap-4">
             {contacts.map((contact, id) =>
-                <ContactCardItem key={id} title={contact.title} value={contact.value} icon={iconMap[contact.icon]}/>
+                <ContactCardItem
+                    key={id}
+                    title={contact.title}
+                    value={contact.value}
+                    link={contact.link}
+                    type={contact.type}
+                    icon={iconMap[contact.icon]}/>
             )}
         </div>
     )
 }
 
-function ContactCardItem(props: { title: string, value: string, icon: React.ReactNode }) {
-    const {title, value, icon} = props;
+interface ContactCardProps {
+    title: string,
+    value: string,
+    icon: ReactNode,
+    link: string,
+    type: string,
+}
+
+function ContactCardItem(props: ContactCardProps) {
+    const {title, value, icon, link, type} = props;
     return (
-        <div
-            className={`flex items-center gap-2 ${title === "Email" ? 'col-span-2 md:col-span-1 justify-center md:justify-normal' : ''}`}>
+        <Link
+            target="_blank"
+            href={type + link}
+            className="flex items-center gap-2">
             <div>
                 {icon}
             </div>
@@ -147,6 +167,6 @@ function ContactCardItem(props: { title: string, value: string, icon: React.Reac
                 <p className="text-secondary-text text-sm">{title}</p>
                 <p className="font-light text-sm">{value}</p>
             </div>
-        </div>
+        </Link>
     )
 }
