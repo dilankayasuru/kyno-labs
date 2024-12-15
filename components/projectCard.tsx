@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import {useState} from "react";
+
 const ImageSlider = dynamic(() => import("@/components/slider"), {ssr: false});
 const ArrowUp = dynamic(() => import("@/components/icons/arrowup"), {ssr: false});
 import variants from "@/components/animation/variants";
@@ -38,7 +39,7 @@ const ProjectCard = (props: ProjectCardProps) => {
                 </div>
             </div>
             <div
-                className={`absolute ${expanded ? 'top-0' : 'top-96'} bg-[linear-gradient(135deg,_#ffffff21,_#d9d9d900)] bg-black p-4 duration-300 transition-all rounded-t-xl h-full`}>
+                className={`!absolute ${expanded ? 'top-0' : 'top-96'} bg-[linear-gradient(135deg,_#ffffff21,_#d9d9d900)] bg-black p-4 duration-300 transition-all rounded-t-xl h-full gradient-border`}>
                 <p className="text-secondary-text pt-10 text-lg cursor-pointer">
                     {description}
                 </p>
