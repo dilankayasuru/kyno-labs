@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
+import CanvasView from "@/components/canvasView";
 
-const CanvasView = dynamic(() => import("@/components/canvasView"), {ssr: false})
 const Background = dynamic(() => import("@/components/background"), {ssr: false});
 const Navbar = dynamic(() => import("@/components/navbar"), {ssr: false})
 const Hero = dynamic(() => import("@/sections/hero"), {ssr: false});
