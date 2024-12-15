@@ -55,7 +55,7 @@ export default function Cube(props: CubeProps) {
             <directionalLight castShadow intensity={0.6} position={[0, 0, 10]}/>
             <Float
                 speed={1}
-                rotationIntensity={2}
+                rotationIntensity={1.5}
                 floatIntensity={1.2}>
                 <group
                     position={new Vector3(position.x, position.y, 0)}

@@ -19,7 +19,7 @@ export default function WhoWeAre() {
         <div className="text-white py-9 md:relative" id="about">
             {isDesktop &&
                 <View visible={isDesktop} className="md:w-full md:h-full md:absolute">
-                    <Cube position={{x: 0, y: -3.5}}/>
+                    <Cube position={{x: 0, y: -3}}/>
                     <Preload all/>
                 </View>
             }
