@@ -25,7 +25,7 @@ export default function Navbar() {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         }
-    }, [scrollPosition]);
+    }, [scrollPosition, menuOpened]);
 
     return (
         <div>

@@ -5,7 +5,6 @@ import {FormEvent, useEffect, useState} from "react";
 const InputField = dynamic(() => import("@/components/inputField").then(mod => mod.InputField), {ssr: false});
 const TextArea = dynamic(() => import("@/components/inputField").then(mod => mod.TextArea), {ssr: false});
 import CloseIcon from "@/components/icons/close";
-import {motion} from "motion/react";
 
 interface ConsultationFormProps {
     onClose: () => void
@@ -83,7 +82,7 @@ export default function ConsultationForm(props: ConsultationFormProps) {
                 </button>
                 <div>
                     <div>
-                        <p className="text-2xl mb-2">Let's chat,</p>
+                        <p className="text-2xl mb-2">Let&apos;s chat,</p>
                         <p className="text-secondary-text">Tell us a bit about your needs, and our team will get back to
                             you with tailored insights. Fill
                             out the form below to schedule your free consultation.</p>
